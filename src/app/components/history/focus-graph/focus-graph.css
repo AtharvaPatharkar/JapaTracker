@@ -1,0 +1,296 @@
+
+/* ===== CARD ===== */
+.focus-graph-card {
+  background: transparent;
+
+  padding: 1rem;
+
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* ===== HEADER ===== */
+.fg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.fg-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #1f2937;
+}
+
+.trend {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ===== RANGE SELECTOR ===== */
+.range-selector {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.range-selector button {
+  background: #f3f4f6;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.range-selector button:hover {
+  background: #e5e7eb;
+}
+
+.range-selector button.active {
+  background: #6366f1;
+  color: #fff;
+}
+
+/* ===== STATS ===== */
+.fg-stats {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  flex: 1;
+  background: #f9fafb;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 70px;
+}
+
+.stat-box .label {
+  display: block;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.stat-box .value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* ===== GRAPH AREA ===== */
+.graph-area {
+  position: relative;
+}
+
+/* ===== Y AXIS ===== */
+.y-axis-labels {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #9ca3af;
+  padding-right: 5px;
+}
+
+/* ===== SCROLL CONTAINER ===== */
+.scroll-container {
+  overflow: hidden;
+  padding-left: 25px;
+}
+
+.scroll-container.scroll-enabled {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+/* scrollbar */
+.scroll-container.scroll-enabled::-webkit-scrollbar {
+  height: 5px;
+}
+
+.scroll-container.scroll-enabled::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 6px;
+}
+
+/* ===== GRAPH WRAPPER ===== */
+.graph-wrapper {
+  position: relative;
+}
+
+/* dynamic width when scroll */
+.scroll-enabled .graph-wrapper {
+  min-width: 600px;
+}
+
+/* ===== SVG ===== */
+.line-svg {
+  width: 100%;
+  height: 120px;
+}
+
+/* ===== X AXIS ===== */
+.x-axis-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #6b7280;
+  margin-top: 6px;
+  padding-left: 25px;
+}
+
+/* scroll sync */
+.x-axis-labels.scroll-enabled {
+  min-width: 600px;
+}
+
+.x-axis-labels span {
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+  text-align: center;
+  font-size: 13px;
+  color: #9ca3af;
+  padding: 12px;
+}
+
+
+
+/* =========================
+   MOBILE (≤ 768px)
+========================= */
+@media (max-width: 768px) {
+
+  /* CARD */
+  .focus-graph-card {
+    padding: 0.8rem;
+  }
+
+  /* HEADER */
+  .fg-header h3 {
+    font-size: 14px;
+  }
+
+  .trend {
+    font-size: 12px;
+  }
+
+  /* RANGE SELECTOR (scrollable row) */
+  .range-selector {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+
+  .range-selector::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .range-selector button {
+    flex: 0 0 auto;
+    font-size: 10px;
+    padding: 4px 8px;
+    white-space: nowrap;
+  }
+
+  /* STATS (2 per row) */
+  .fg-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .stat-box {
+    padding: 6px;
+  }
+
+  .stat-box .value {
+    font-size: 13px;
+  }
+
+  /* GRAPH AREA */
+  .graph-area {
+    margin-top: 8px;
+  }
+
+  /* Y AXIS */
+  .y-axis-labels {
+    font-size: 9px;
+    left: 0;
+  }
+
+  /* GRAPH */
+  .scroll-container {
+    padding-left: 20px;
+  }
+
+  .line-svg {
+    height: 100px;
+  }
+
+  /* X AXIS */
+  .x-axis-labels {
+    font-size: 9px;
+    padding-left: 20px;
+    gap: 4px;
+  }
+
+  .x-axis-labels span {
+    font-size: 9px;
+  }
+
+  /* SCROLL WIDTH ADJUST */
+  .scroll-enabled .graph-wrapper {
+    min-width: 500px;
+  }
+
+}
+
+/* =========================
+   SMALL MOBILE (≤ 480px)
+========================= */
+@media (max-width: 480px) {
+
+  /* HEADER */
+  .fg-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  /* RANGE BUTTON */
+  .range-selector button {
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+
+  /* GRAPH HEIGHT SMALL */
+  .line-svg {
+    height: 90px;
+  }
+
+  /* STATS tighter */
+  .stat-box .label {
+    font-size: 10px;
+  }
+
+  .stat-box .value {
+    font-size: 12px;
+  }
+
+}

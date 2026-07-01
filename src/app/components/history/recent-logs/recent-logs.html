@@ -1,0 +1,72 @@
+<div class="logs-card vitkari-block">
+  <div class="logs-header">
+    <h3>{{ 'logs_title' | translate }}</h3>
+    <button class="view-toggle" (click)="toggleView()">
+      {{ (showAll ? 'show_recent' : 'show_all') | translate }}
+    </button>
+  </div>
+
+  <div class="report-summary">
+    <div class="range-box">
+      <small><b>{{ 'account_range' | translate }}:</b> {{ getFullRangeText() }}</small>
+    </div>
+
+    <div class="row-count">
+      <b>{{ 'records_label' | translate }}:</b> {{ filteredLogs.length }} / {{ data.length }}
+    </div>
+
+    <div class="range-box filtered" *ngIf="showAll && startDate && endDate">
+      <small>
+        <b>{{ 'filtered_range' | translate }}:</b> {{ formatDate(startDate) }} {{ 'to_label' | translate }} {{ formatDate(endDate) }}
+      </small>
+    </div>
+  </div>
+
+  <div class="filter-section" *ngIf="showAll">
+    <input type="date" [(ngModel)]="startDate" (change)="applyFilters()">
+    <input type="date" [(ngModel)]="endDate" (change)="applyFilters()">
+    <select [(ngModel)]="selectedTarget" (change)="applyFilters()">
+      <option value="">{{ 'all_targets' | translate }}</option>
+      <option *ngFor="let t of uniqueTargets" [value]="t">
+        {{ t }} {{ 'mala_label_short' | translate }} {{ 'col_target' | translate }}
+      </option>
+    </select>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="logs-table">
+      <thead>
+        <tr>
+          <th>{{ 'col_date' | translate }}</th>
+          <th>{{ 'col_target' | translate }}</th>
+          <th>{{ 'col_mala' | translate }}</th>
+          <th>{{ 'col_total' | translate }}</th>
+          <th *ngIf="showAll">{{ 'col_action' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="filteredLogs.length > 0">
+        <tr *ngFor="let item of filteredLogs; trackBy: trackByIndex">
+          <td>{{ formatDate(item.date) }}<br><small>{{ formatTime(item.date) }}</small></td>
+          <td>{{ item.target }}</td>
+          <td>{{ item.mala }}</td>
+          <td>{{ item.mala * item.target }}</td>
+          <td *ngIf="showAll">
+            <button class="delete-btn" (click)="deleteLog(item)">❌</button>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="filteredLogs.length === 0">
+        <tr>
+          <td colspan="5" style="text-align:center;">{{ 'no_data_filter' | translate }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr class="grand-total">
+          <td colspan="2"><b>{{ 'sum_label' | translate }}</b></td>
+          <td><b>{{ sumMalas }}</b></td>
+          <td><b>{{ sumTotalCount }}</b></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

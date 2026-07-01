@@ -1,0 +1,270 @@
+/* =========================================
+   1. GLOBAL & LAYOUT
+   ========================================= */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  background-color: #000; 
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.dashboard-wrapper {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+}
+
+.dashboard-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.dashboard-container {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   2. HEADER & USER BAR
+   ========================================= */
+.header {
+  text-align: center;
+  font-size: clamp(26px, 5vw, 42px);
+  font-weight: 700;
+  background: linear-gradient(135deg, #facc15, #b45309);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 2px solid #d4a937;
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1.5px;
+}
+
+.user-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #d4a937;
+  border-radius: 12px;
+  color: #facc15;
+  backdrop-filter: blur(10px);
+}
+
+/* =========================================
+   3. GRID SYSTEM (ALIGNMENT FIX)
+   ========================================= */
+.top-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.main-row {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.side-col, .center-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* =========================================
+   4. THEME & GLASS CARDS (COMPONENTS)
+   ========================================= */
+
+/* सर्व कॉम्पोनंट्सच्या कार्ड्सना थीम लागू करणे */
+app-counter, 
+app-settings, 
+app-controls,
+app-target,
+app-progress,
+app-almanac,
+app-timer,
+app-alarm,
+app-autoclick,
+.glass-card {
+  display: block !important;
+  /* क्रीम रंगाऐवजी पारदर्शक काचेचा इफेक्ट */
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px);
+  
+  /* 🎇 गोल्ड बॉर्डर (As per Progress Card) */
+  border: 3px solid #d4a937 !important; 
+  border-radius: 20px !important;
+  
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), 
+              inset 0 0 10px rgba(212, 169, 55, 0.2) !important;
+  
+  margin-bottom: 20px !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease;
+}
+
+/* कार्डच्या आतील पांढरे किंवा क्रीम डबे पारदर्शक करणे */
+.main-container, 
+.circle-container, 
+.total-stats-box, 
+.settings-section, 
+.input-group {
+  background: transparent !important;
+  border: 1px solid rgba(212, 169, 55, 0.2) !important;
+  box-shadow: none !important;
+}
+
+/* =========================================
+   5. BUTTONS & UI
+   ========================================= */
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:active { transform: scale(0.96); }
+
+.btn-blue { background: linear-gradient(#3b82f6, #1d4ed8); color: white; }
+.btn-green { background: linear-gradient(#22c55e, #15803d); color: white; }
+.logout-btn { background: linear-gradient(#ef4444, #b91c1c); color: white; }
+
+/* =========================================
+   6. RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 768px) {
+  .top-row { grid-template-columns: 1fr; }
+  .main-row { grid-template-columns: 1fr; }
+  .user-bar { flex-direction: column; gap: 12px; text-align: center; }
+  .nav-buttons { flex-direction: column; width: 100%; }
+  .nav-buttons button { width: 100%; }
+}
+
+/* =========================================
+   7. BATTERY SAVER OVERLAY
+   ========================================= */
+.saver-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.95) !important;
+  z-index: 999999 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.saver-content {
+  text-align: center;
+  color: #ffffff;
+}
+
+.tap-hint {
+  color: #facc15;
+  display: block;
+  margin-top: 15px;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink { 50% { opacity: 0.3; } }
+
+app-footer {
+  flex-shrink: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+
+
+
+
+
+
+
+
+/* डेस्कटॉपवर बार लपवा */
+.mobile-quick-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-quick-nav {
+    display: flex;
+    overflow-x: auto; /* जर जास्त बटणे झाली तर स्क्रोल करता येईल */
+    white-space: nowrap;
+    gap: 10px;
+    padding: 12px 10px;
+    background: rgba(26, 26, 26, 0.85); /* डार्क काचेसारखा लूक */
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.4);
+    
+    /* ⚡ हा मुख्य भाग आहे: बार वर चिकटून राहण्यासाठी */
+    position: sticky;
+    top: 0; 
+    z-index: 1000;
+    margin: 0 -15px 15px -15px; /* डॅशबोर्डच्या कडेला चिकटवण्यासाठी */
+  }
+
+  .mobile-quick-nav a {
+    color: #ffd700;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .mobile-quick-nav a:active {
+    background: #ffd700;
+    color: #000;
+  }
+
+  /* स्क्रोलबार लपवण्यासाठी */
+  .mobile-quick-nav::-webkit-scrollbar {
+    display: none;
+  }
+}

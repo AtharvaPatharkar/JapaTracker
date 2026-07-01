@@ -1,0 +1,25 @@
+<div class="nav-bar">
+
+  <!-- LEFT: BACK BUTTON -->
+  <button class="gold-btn-outline" (click)="onBack()">
+    ⬅ {{ 'back_to_dashboard' | translate }}
+  </button>
+
+  <!-- CENTER: TITLE -->
+  <div class="header-center">
+    <h1 class="brand-title">JapaTracker</h1>
+    <p class="tagline">{{ 'brand_tagline' | translate }}</p>
+  </div>
+
+  <!-- RIGHT: DATE & PROFILE -->
+  <div class="header-right">
+    <div class="date-range">
+      {{ currentDateRange }}
+    </div>
+    
+    <button class="profile-btn" (click)="onProfile()">
+      👤 {{ 'go_to_profile' | translate }}
+    </button>
+  </div>
+
+</div>

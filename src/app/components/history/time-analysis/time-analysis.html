@@ -1,0 +1,32 @@
+<div class="time-analysis-card vitkari-block">
+  <div class="analysis-header">
+    <h3>{{ 'time_analysis_title' | translate }}</h3>
+    <span class="peak-badge">
+      🔥 {{ 'peak_label' | translate }}: {{ peakHour || '—' }}
+    </span>
+  </div>
+
+  <div class="graph-container">
+    <!-- Y-Axis -->
+    <div class="y-axis" *ngIf="processedData && processedData.length">
+      <span>{{ maxCount | number:'1.0-0' }}</span>
+      <span>{{ (maxCount / 2) | number:'1.0-0' }}</span>
+      <span>0</span>
+    </div>
+
+    <div class="time-slots" *ngIf="processedData && processedData.length">
+      <div *ngFor="let slot of processedData; trackBy: trackByHour" class="time-bar-wrapper">
+        <div class="time-bar" [style.height]="((slot.intensity || 0) * 140) + 'px'"
+          [class.active]="formatHour(slot.hour) === peakHour">
+          
+          <span class="tooltip">
+            {{ formatHour(slot.hour) }}<br>
+            {{ slot.count }} {{ 'mala_label_unit' | translate }}
+          </span>
+
+        </div>
+        <div class="time-label">{{ formatHour(slot.hour) }}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="timer-container">
+  <h4>{{ 'timer_title' | translate }}</h4>
+
+  <input type="text" 
+         [(ngModel)]="timeInput" 
+         (input)="onTimerInputChange($event)"
+         inputmode="numeric"
+         maxlength="3"
+         [placeholder]="'timer_placeholder' | translate">
+
+  <h2 class="time-text" [class.animate]="animate">
+    {{ displayTime }}
+  </h2>
+
+  <div class="btn-group mt-2">
+    <button class="btn btn-success" (click)="startTimer()">
+      {{ 'start_btn' | translate }}
+    </button>
+    <button class="btn btn-danger" (click)="stopTimer()">
+      {{ 'stop_btn' | translate }}
+    </button>
+  </div>
+</div>
+
+<div class="popup" *ngIf="showPopup">
+  <div class="popup-box">
+    <h3>{{ 'timer_done_title' | translate }}</h3>
+    <p>{{ 'timer_complete_msg' | translate }}</p>
+    <button (click)="closePopup()">
+      {{ 'ok_btn' | translate }}
+    </button>
+  </div>
+</div>

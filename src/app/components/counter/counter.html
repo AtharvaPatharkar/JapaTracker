@@ -1,0 +1,44 @@
+<div class="main-counter-wrapper no-copy">
+  <h4 class="counter-title">{{ 'counter_header' | translate }}</h4>
+  <div class="glow-ring"></div>
+
+  <div class="circle-container" 
+       (click)="increment()" 
+       [class.is-complete]="state.count >= state.target">
+    <div class="circle-content">
+      <h1 class="count-number">{{ state.count }}</h1>
+      <p class="count-label">{{ state.mala }} {{ 'mala_label' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="total-stats-box">
+    <span class="total-label">{{ 'total_japa' | translate }}:</span>
+    <span class="total-value">
+  {{ state.isLimitReached ? (state.mala * state.target) : (state.mala * state.target) + state.count }}
+</span>
+  </div>
+
+<div class="total-stats-box">
+  <span class="total-label">{{ 'mani_each_mala' | translate }} :</span>
+  <span class="total-value">{{ state.target }}</span>
+</div>
+
+<div class="target-section">
+  <div class="input-group">
+    <label>{{ 'total_japa_per_mala' | translate }}</label> 
+<input type="text" 
+           #t 
+           inputmode="numeric"
+           [placeholder]="state.target"
+           (input)="onTargetInput($event)"
+           maxlength="9">
+    <button class="edit-btn" (click)="changeTarget(+t.value)">
+      {{ 'edit_btn' | translate }}
+    </button>
+  </div>
+</div>
+
+  <button class="restart-action-btn" (click)="reset()">
+    <span>🔄</span> {{ 'restart_btn' | translate }}
+  </button>
+</div>

@@ -1,0 +1,90 @@
+/* Container */
+.controls-container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 280px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+
+  /* 🌼 Temple Theme Base */
+  background: linear-gradient(135deg, #fff3e0, #f7e6c4);
+  border: 3px solid #caa96b;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  position: relative;
+}
+
+/* Header (Vitkari/Brick Red) */
+.controls-container h4 {
+  margin: -20px -20px 20px -20px;
+  padding: 12px;
+  background: linear-gradient(135deg, #9a3412, #7c2d12);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 20px 20px 0 0;
+  border-bottom: 3px solid #d4a937;
+}
+
+/* Button Grouping */
+.btn-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Base Button Styling */
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Save Button (Spiritual Green) */
+.btn-success {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  box-shadow: 0 4px 0 #144016; /* 3D depth */
+}
+
+.btn-success:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* Restart Button (Warning/Danger Red) */
+.btn-danger {
+  background: linear-gradient(135deg, #d32f2f, #b71c1c);
+  box-shadow: 0 4px 0 #7f1010; /* 3D depth */
+}
+
+.btn-danger:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* Click Effect */
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 transparent;
+}
+
+/* Responsive Touch Adjustment */
+@media (max-width: 480px) {
+  .btn {
+    padding: 14px 10px;
+    font-size: 13px;
+  }
+}

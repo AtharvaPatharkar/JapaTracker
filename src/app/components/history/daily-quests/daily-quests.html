@@ -1,0 +1,70 @@
+<div class="quests-card vitkari-block">
+
+  <div class="quests-header">
+    <h3>{{ 'daily_quests_title' | translate }}</h3>
+    <span class="progress-text">
+      {{ completedCount }} / {{ dailyQuests.length }}
+    </span>
+  </div>
+
+  <div class="points-summary">
+    <div class="today">
+      🎯 {{ 'today_points' | translate }}: <b>{{ todayTotal }}</b>
+    </div>
+    <div class="all-time">
+      🏆 {{ 'total_points' | translate }}: <b>{{ allTimeTotal }}</b>
+    </div>
+  </div>
+
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="fill" [style.width.%]="getProgress()"></div>
+    </div>
+    <span class="percentage">{{ getProgress() }}%</span>
+  </div>
+
+  <div class="quest-list">
+    <div *ngFor="let q of dailyQuests; let i = index"
+         class="quest-item"
+         [class.done]="q.completed"
+         [class.claimed]="q.claimed">
+
+      <input type="checkbox"
+             [checked]="q.completed"
+             [disabled]="q.claimed"
+             (click)="toggleQuest(i)" />
+
+      <span class="quest-text">
+        {{ q.task | translate }}
+      </span>
+
+      <span class="reward">
+        +{{ q.reward || 10 }}
+      </span>
+    </div>
+  </div>
+
+  <div class="bonus-section" *ngIf="dailyQuests.length">
+    <button class="claim-btn"
+            [disabled]="totalRewards === 0 || allCompleted"
+            (click)="onClaim()">
+
+      <ng-container *ngIf="allCompleted">
+        {{ 'all_claimed' | translate }}
+      </ng-container>
+
+      <ng-container *ngIf="!allCompleted && totalRewards > 0">
+        🎁 {{ 'claim_btn' | translate }} {{ totalRewards }}
+      </ng-container>
+
+      <ng-container *ngIf="!allCompleted && totalRewards === 0">
+        {{ 'complete_tasks' | translate }}
+      </ng-container>
+    </button>
+  </div>
+
+  <div class="total-display" *ngIf="totalRewards > 0 && !allCompleted">
+    <p>{{ 'preview_msg' | translate }} <b>{{ totalRewards }}</b></p>
+  </div>
+
+</div>

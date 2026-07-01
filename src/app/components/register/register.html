@@ -1,0 +1,102 @@
+<div class="page-container">
+  <div class="main-container">
+
+    <!-- LEFT INFO SECTION -->
+    <div class="info-section animate-fade-in">
+      <div class="overlay"></div>
+      <div class="content">
+        <h1 class="logo-text">📿 JapaTracker</h1>
+        <p class="tagline">{{ 'reg_tagline' | translate }}</p>
+        <div class="motivation-box">
+          <div class="stat-preview">
+            <span class="stat-icon">🧘</span>
+            <div class="stat-text">
+              <strong>{{ 'reg_daily_japa' | translate }}</strong>
+              <p>{{ 'reg_daily_japa_sub' | translate }}</p>
+            </div>
+          </div>
+          <div class="stat-preview">
+            <span class="stat-icon">🔥</span>
+            <div class="stat-text">
+              <strong>{{ 'reg_streaks' | translate }}</strong>
+              <p>{{ 'reg_streaks_sub' | translate }}</p>
+            </div>
+          </div>
+          <div class="stat-preview">
+            <span class="stat-icon">📊</span>
+            <div class="stat-text">
+              <strong>{{ 'reg_progress' | translate }}</strong>
+              <p>{{ 'reg_progress_sub' | translate }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="highlight-box">
+          {{ 'reg_challenge' | translate }}
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTER FORM SECTION -->
+    <div class="login-page">
+      <div class="login-card animate-slide-in">
+
+        <!-- SAVING BANNER -->
+        <div class="saving-banner" *ngIf="isSaving">
+          <div class="banner-content">
+            <span class="icon">💾</span>
+            <p><strong>{{ 'reg_save_title' | translate }}</strong></p>
+            <small>{{ 'reg_save_sub' | translate }}</small>
+          </div>
+        </div>
+
+        <div class="header-group">
+          <h2 class="title">{{ (isSaving ? 'reg_header_save' : 'reg_header_create') | translate }}</h2>
+          <p class="subtitle">
+            {{ (isSaving ? 'reg_sub_save' : 'reg_sub_start') | translate }}
+          </p>
+        </div>
+
+        <div class="input-group">
+          <div class="input-wrapper">
+            <input type="text" placeholder="{{ 'placeholder_name' | translate }}" [(ngModel)]="user.name"
+              maxlength="25">
+          </div>
+
+          <div class="input-wrapper">
+            <input type="email" placeholder="{{ 'placeholder_email' | translate }}" [(ngModel)]="user.email">
+          </div>
+
+          <div class="input-wrapper">
+            <input type="password" placeholder="{{ 'placeholder_password' | translate }}" [(ngModel)]="user.password"
+              maxlength="30">
+          </div>
+
+          <div class="input-wrapper">
+            <input type="password" placeholder="{{ 'placeholder_confirm_password' | translate }}"
+              [(ngModel)]="user.confirmPassword" maxlength="30">
+          </div>
+        </div>
+
+        <div class="error-msg" *ngIf="error" style="color: #ff4444; margin-bottom: 10px; font-size: 0.9rem;">
+          {{error}}
+        </div>
+
+        <button class="btn-login" (click)="register()" [disabled]="loading">
+          <span>
+            {{ loading ? ('btn_creating' | translate) : (isSaving ? ('btn_reg_save_my_japa' | translate) :
+            ('reg_header_create' | translate)) }}
+          </span>
+          <span class="arrow" *ngIf="!loading">→</span>
+        </button>
+
+        <div class="footer-actions">
+          <span>{{ 'already_account' | translate }}</span>
+          <button routerLink="/login" class="btn-switch">{{ 'login_title' | translate }}</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <app-footer></app-footer>
+</div>

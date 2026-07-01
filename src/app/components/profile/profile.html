@@ -1,0 +1,163 @@
+<div class="page-container">
+  <div class="main-container">
+    <div class="profile-wrapper">
+
+      <div class="profile-header">
+        <h1>{{ 'profile_title' | translate }}</h1>
+      </div>
+
+      <div class="profile-grid">
+
+        <!-- १. LEFT SIDE: Personal Info -->
+        <div class="side-col left">
+          <div class="card">
+            <h2>{{ 'personal_info' | translate }}</h2>
+            <div class="img-container">
+              <img *ngIf="profileImage" [src]="profileImage" class="profile-img" (error)="onImageError()">
+              <div *ngIf="!profileImage" class="no-image-placeholder initials-avatar">
+                {{ initials }}
+              </div>
+            </div>
+
+            <!-- VIEW MODE -->
+            <div *ngIf="!editMode" @fadeSlide>
+              <p><b>{{ 'name' | translate }}:</b> {{user?.name ?? '-'}}</p>
+              <p><b>{{ 'email' | translate }}:</b> {{user?.email ?? '-'}}</p>
+              <p><b>{{ 'age' | translate }}:</b> {{user?.age ?? '-'}}</p>
+              <p><b>{{ 'city' | translate }}:</b> {{user?.city ?? '-'}}</p>
+              <button class="btn edit" (click)="toggleEdit()">{{ 'edit_btn' | translate }}</button>
+            </div>
+
+            <!-- EDIT MODE -->
+            <div *ngIf="editMode" @fadeSlide>
+              <input [(ngModel)]="user.name" [placeholder]="'name' | translate" maxlength="25">
+
+              <input [(ngModel)]="user.age" type="number" [placeholder]="'age' | translate"
+                oninput="if(this.value.length > 3) this.value = this.value.slice(0, 3);" min="1" max="120">
+
+              <input [(ngModel)]="user.city" [placeholder]="'city' | translate" maxlength="30">
+
+              <input type="file" (change)="onImageChange($event)">
+
+              <div class="btn-group">
+                <button class="btn save" (click)="saveProfile()">{{ 'save_btn' | translate }}</button>
+                <button class="btn cancel" (click)="toggleEdit()">{{ 'cancel_btn' | translate }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- २. CENTER: Language & Appearance  -->
+        <div class="center-col">
+          <!-- LANGUAGE -->
+          <div class="card">
+            <h2>🌐 {{ 'select_lang_msg' | translate }}</h2>
+            <div class="theme-options vertical">
+              <button class="theme-btn" [class.active]="langService.getCurrentLang() === 'sa'"
+                (click)="changeLanguage('sa')">संस्कृतम्</button>
+              <button class="theme-btn" [class.active]="langService.getCurrentLang() === 'mr'"
+                (click)="changeLanguage('mr')">मराठी</button>
+              <button class="theme-btn" [class.active]="langService.getCurrentLang() === 'hi'"
+                (click)="changeLanguage('hi')">हिंदी</button>
+              <button class="theme-btn" [class.active]="langService.getCurrentLang() === 'gu'"
+                (click)="changeLanguage('gu')">ગુજરાતી</button>
+              <button class="theme-btn" [class.active]="langService.getCurrentLang() === 'te'"
+                (click)="changeLanguage('te')">తెలుగు</button>
+              <button class="theme-btn" [class.active]="langService.getCurrentLang() === 'en'"
+                (click)="changeLanguage('en')">English</button>
+            </div>
+          </div>
+
+          <!-- APPEARANCE -->
+          <div class="card">
+            <h2>🎨 {{ 'appearance' | translate }}</h2>
+            <div class="theme-options vertical">
+              <button class="theme-btn dark-gold" [class.active]="themeService.getCurrentTheme() === 'dark-gold'"
+                (click)="changeAppTheme('dark-gold')">{{ 'theme_dark' | translate }}</button>
+              <button class="theme-btn classic-light"
+                [class.active]="themeService.getCurrentTheme() === 'classic-light'"
+                (click)="changeAppTheme('classic-light')">{{ 'theme_light' | translate }}</button>
+              <button class="theme-btn deep-ocean" [class.active]="themeService.getCurrentTheme() === 'deep-ocean'"
+                (click)="changeAppTheme('deep-ocean')">{{ 'theme_ocean' | translate }}</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACCOUNT CARD -->
+        <!-- ३. RIGHT SIDE: Account Management -->
+        <div class="side-col right">
+          <div class="card account-card">
+            <h2>⚙️ {{ 'acc_management' | translate }}</h2>
+            <p><b>{{ 'email' | translate }}:</b> {{user?.email ?? '-'}}</p>
+
+            <div class="account-meta">
+              <p>
+                <b>🗓️ {{ 'joined_date' | translate }}:</b>
+                <span>{{ user?.createdAt | date:'dd MMM yyyy, hh:mm a' }}</span>
+              </p>
+              <p>
+                <b>⚡ {{ 'last_active' | translate }}:</b>
+                <span>{{ user?.lastActive | date:'dd MMM yyyy, hh:mm a' }}</span>
+              </p>
+            </div>
+
+            <div class="nav-actions">
+              <button class="btn back" routerLink="/dashboard">{{ 'dashboard_btn' | translate }}</button>
+              <button class="btn history" routerLink="/history">{{ 'history_btn' | translate }}</button>
+            </div>
+
+            <hr class="divider">
+
+            <button class="btn edit" (click)="showPasswordModal = true">{{ 'change_pass' | translate }}</button>
+            <button class="btn cancel" (click)="logout()">{{ 'logout_btn' | translate }}</button>
+
+            <hr class="divider">
+
+            <p class="danger-text">{{ 'danger_zone' | translate }}</p>
+            <button class="btn delete" (click)="deleteAccount()">{{ 'delete_acc' | translate }}</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Change Password Modal -->
+      <div class="cropper-overlay" *ngIf="showPasswordModal">
+        <div class="cropper-box">
+          <h3>{{ 'change_pass_title' | translate }}</h3>
+
+          <input style="color: #000;" type="password" [(ngModel)]="passwords.current" [placeholder]="'curr_pass_ph' | translate"
+            maxlength="30">
+
+          <input type="password" [(ngModel)]="passwords.new" [placeholder]="'new_pass_ph' | translate" maxlength="30">
+
+          <input type="password" [(ngModel)]="passwords.confirm" [placeholder]="'conf_pass_ph' | translate"
+            maxlength="30">
+
+          <div class="crop-actions">
+            <button class="btn save" (click)='updatePassword()'>{{ 'update_btn' | translate }}</button>
+            <button class="btn cancel" (click)="showPasswordModal = false">{{ 'cancel_btn' | translate }}</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Cropper Modal -->
+      <div class="cropper-overlay" *ngIf="showCropper">
+        <div class="cropper-box">
+          <h3>{{ 'crop_title' | translate }}</h3>
+          <div style="background: #000; border-radius: 8px; overflow: hidden;">
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1"
+              format="png" (imageCropped)="imageCropped($event)">
+            </image-cropper>
+          </div>
+          <div class="crop-actions">
+            <button class="btn save" (click)="saveCroppedImage()">{{ 'save_btn' | translate }}</button>
+            <button class="btn cancel" (click)="showCropper=false">{{ 'cancel_btn' | translate }}</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+
+</div>

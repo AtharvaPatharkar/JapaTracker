@@ -1,0 +1,129 @@
+.time-analysis-card {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  padding: 16px;
+  border-radius: 14px;
+  background: transparent;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* HEADER */
+.analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.peak-badge {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background: rgba(255,0,0,0.1);
+  color: #dc2626;
+  border: 2px solid black;
+}
+
+/* EMPTY */
+.empty-state {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+}
+
+/* GRAPH */
+.time-slots {
+  display: flex;
+  align-items: flex-end;
+  height: 160px;         /* थोडी उंची वाढवली आहे */
+  gap: 0px;             /* बारमधील अंतर वाढवले */
+  overflow-x: auto;      /* ✅ हॉरिझॉन्टल स्क्रोल सुरू केले */
+  padding-bottom: 5px;  /* स्क्रोलबारसाठी जागा */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* मोबाईलवर स्मूथ स्क्रोलसाठी */
+}
+.time-slots::-webkit-scrollbar {
+  height: 4px;
+}
+.time-slots::-webkit-scrollbar-thumb {
+  background: #de5252;
+  border-radius: 10px;
+}
+/* WRAPPER */
+.time-bar-wrapper {
+  flex: 0 0 35px;      
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* BAR */
+.time-bar {
+  width: 15px;  
+  background: linear-gradient(to top, #4f46e5, #a5b4fc);
+  border-radius: 6px;
+  position: relative;
+  transition: 0.3s;
+  min-height: 4px;
+}
+
+/* PEAK */
+.time-bar.active {
+  background: linear-gradient(to top, #22c55e, #86efac);
+  box-shadow: 0 0 6px rgba(0, 255, 94, 0.6);
+}
+
+/* TOOLTIP */
+.tooltip {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #fff;
+  font-size: 10px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.time-bar:hover .tooltip {
+  opacity: 1;
+}
+
+.time-bar.active .tooltip {
+  opacity: 1;      
+  bottom: 105%;
+}
+
+/* LABEL */
+.time-label {
+  font-size: 10px;
+  margin-top: 6px;
+  color: #888;
+  white-space: nowrap;  
+}
+
+.graph-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  height: 220px;     
+  padding-top: 30px;   
+}
+
+.y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 140px; 
+  font-size: 10px;
+  color: #888;
+  padding-bottom: 24px; 
+  text-align: right;
+  min-width: 25px;      
+  border-right: 1px solid rgba(0,0,0,0.05);
+  padding-right: 8px;
+}

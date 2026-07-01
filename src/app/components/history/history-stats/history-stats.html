@@ -1,0 +1,34 @@
+<div class="stats-grid">
+  
+  <div class="stat-card">
+    <span class="label">{{ 'total_malas_label' | translate }}</span>
+    <span class="value gold-glow">{{ totalMala }}</span>
+  </div>
+
+  <div class="stat-card">
+    <span class="label">{{ 'total_japa_label' | translate }}</span>
+    <span class="value">{{ totalCount | number }}</span>
+  </div>
+
+  <div class="stat-card">
+    <span class="label">{{ 'current_streak_label' | translate }}</span>
+    <span class="value orange-text">
+      {{ currentStreak }} {{ 'day_label_short' | translate }}
+    </span>
+  </div>
+
+  <div class="stat-card">
+    <span class="label">{{ 'max_streak_label' | translate }}</span>
+    <span class="value">
+      {{ longestStreak }} {{ 'day_label_short' | translate }}
+    </span>
+  </div>
+
+  <div class="stat-card">
+    <span class="label">{{ 'status_label' | translate }}</span>
+    <span class="value" [style.color]="currentStreak > 0 ? '#22c55e' : '#ef4444'">
+      {{ (currentStreak > 0 ? 'status_active' : 'status_resting') | translate }}
+    </span>
+  </div>
+ 
+</div>

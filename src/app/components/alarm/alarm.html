@@ -1,0 +1,31 @@
+<div class="alarm-container">
+
+  <h4>{{ 'alarm_title' | translate }}</h4>
+
+  <input type="time" [(ngModel)]="alarmTime">
+
+  <div class="btn-group mt-2">
+    <button class="btn btn-success" (click)="setAlarm()">
+      {{ 'set_alarm_btn' | translate }}
+    </button>
+    <button class="btn btn-danger" (click)="clearAlarm()">
+      {{ 'clear_btn' | translate }}
+    </button>
+  </div>
+
+  <p *ngIf="isSet">
+    {{ 'alarm_set_msg' | translate }} {{ alarmTime }}
+  </p>
+
+</div>
+
+<!-- 🔥 POPUP  -->
+<div class="popup" *ngIf="showPopup">
+  <div class="popup-box">
+    <h3>{{ 'alarm_popup_title' | translate }}</h3>
+    <p>{{ 'alarm_popup_msg' | translate }}</p>
+    <button (click)="closePopup()">
+      {{ 'ok_btn' | translate }}
+    </button>
+  </div>
+</div>

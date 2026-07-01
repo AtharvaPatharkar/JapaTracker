@@ -1,0 +1,65 @@
+<h2>👑 Admin Dashboard</h2>
+
+<div class="controls">
+
+  <input type="text" placeholder="Search..." [(ngModel)]="searchText">
+
+  <input type="date" [(ngModel)]="startDate">
+  <input type="date" [(ngModel)]="endDate">
+
+  <label>
+    <input type="checkbox" [(ngModel)]="showActiveOnly">
+    Active Only
+  </label>
+
+</div>
+
+<div class="stats">
+  <div>Total: {{totalUsers}}</div>
+  <div>Active: {{activeUsers}}</div>
+  <div>Inactive: {{totalUsers - activeUsers}}</div>
+</div>
+
+<div *ngIf="loading">Loading users...</div>
+
+<table *ngIf="!loading && users.length > 0">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th (click)="setSort('createdAt')">Join Date ⬍</th>
+      <th (click)="setSort('lastActive')">Last Active ⬍</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of paginatedUsers">
+      <td data-label="Name">{{u.name}}</td>
+      <td data-label="Email">{{u.email}}</td>
+      <td data-label="Join Date">{{ formatDate(u.createdAt) }}</td>
+      <td data-label="Last Active">{{ formatDate(u.lastActive) }}</td>
+      <td data-label="Status">
+        <span [ngClass]="isActive(u.lastActive) ? 'active' : 'inactive'">
+          {{ isActive(u.lastActive) ? 'Active' : 'Inactive' }}
+        </span>
+      </td>
+      <td data-label="Action">
+        <button (click)="deleteUser(u.uid)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div *ngIf="!loading && users.length === 0">
+  No users found
+</div>
+
+<div class="pagination">
+  <button (click)="prevPage()">⬅</button>
+  <span>{{currentPage}} / {{totalPages}}</span>
+  <button (click)="nextPage()">➡</button>
+</div>
+
+<button class="back-login" (click)="goLogin()">⬅ Back</button>

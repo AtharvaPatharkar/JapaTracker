@@ -1,0 +1,122 @@
+<div class="page-container">
+  <div class="main-container">
+    <div class="dashboard-wrapper">
+      <div class="dashboard-overlay"></div>
+
+      <div class="dashboard-container">
+        <!-- Header -->
+        <div class="header animate-fade-in">JapaTracker</div>
+
+        <!-- User Bar & Greeting -->
+        <div class="user-bar animate-slide-down">
+          <div class="greeting">
+            <span class="emoji">🙏</span>
+            <span class="greet-text">
+              {{ getGreetingKey() | translate }},
+              <strong>{{ user?.name || user?.email?.split('@')[0] || 'Guest' }}</strong>
+            </span>
+          </div>
+
+          <!-- Guest Warning Banner -->
+          <div class="guest-banner" *ngIf="isGuest">
+            <div class="banner-content">
+              <p>⚠️ <strong>{{ 'guest_mode_warning' | translate }}</strong></p>
+              <p>{{ 'guest_loss_msg' | translate }}</p>
+              <p><strong>{{ 'guest_tip' | translate }}</strong></p>
+              <a routerLink="/login" class="banner-link">{{ 'login_now' | translate }}</a>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="nav-buttons" *ngIf="!isGuest">
+            <button class="btn-blue nav-item" routerLink="/history">📊 {{ 'history_btn' | translate }}</button>
+            <button class="btn-green nav-item" routerLink="/profile">👤 {{ 'personal_info' | translate }}</button>
+            <button class="logout-btn nav-item" (click)="logout()">{{ 'logout_btn' | translate }}</button>
+          </div>
+
+
+
+          <div class="nav-buttons" *ngIf="isGuest">
+            <button class="btn-login-nav" routerLink="/login">{{ 'go_to_login' | translate }}</button>
+          </div>
+        </div>
+
+<div class="mobile-quick-nav">
+  <a (click)="scrollTo('counter-section')">
+    {{ 'nav_counter' | translate }}
+  </a>
+  
+  <a (click)="scrollTo('autoclick-section')">
+    {{ 'nav_auto' | translate }}
+  </a>
+
+  <a (click)="scrollTo('tracker-section')">
+    {{ 'nav_progress' | translate }}
+  </a>
+
+  <a (click)="scrollTo('controls-section')">
+    {{ 'nav_controls' | translate }}
+  </a>
+
+  <a (click)="scrollTo('tools-section')">
+    {{ 'nav_tools' | translate }}
+  </a>
+
+  <a (click)="scrollTo('settings-section')">
+    {{ 'nav_settings' | translate }}
+  </a>
+</div>
+
+        <!-- Features Top Row -->
+        <div class="top-row" id="tools-section">
+          <app-almanac class="glass-card animate-pop"></app-almanac>
+          <app-timer class="glass-card animate-pop delay-1"></app-timer>
+          <app-alarm class="glass-card animate-pop delay-2"></app-alarm>
+
+          <app-autoclick #autoRef [incrementFunction]="counterRef.increment.bind(counterRef)" [mala]="state.mala"
+            (autoStopped)="counterRef.resetOnlyCount()" class="glass-card animate-pop delay-3"   id="autoclick-section">
+          </app-autoclick>
+        </div>
+
+        <!-- Main Content Row -->
+        <div class="main-row" id="tracker-section">
+
+          <!-- LEFT COLUMN -->
+          <div class="side-col left">
+            <app-progress [count]="state.count" [target]="state.target" class="glass-card"></app-progress>
+            <app-target [mala]="state.mala" class="glass-card"></app-target>
+          </div>
+
+          <!-- CENTER COLUMN -->
+          <div class="center-col" id="counter-section">
+            <app-counter #counterRef (countChange)="updateCount($event)" (targetChange)="updateTarget($event)"
+              class="main-counter-card">
+            </app-counter>
+
+            <app-controls [isGuest]="isGuest" (stopAutoEvent)="autoRef.stop()"
+              [resetFunction]="counterRef.reset.bind(counterRef)" class="controls-card" id="controls-section">
+            </app-controls>
+          </div>
+
+          <!-- RIGHT COLUMN -->
+          <div class="side-col right" id="settings-section">
+            <app-settings [isBatterySaver]="isBatterySaver" (batterySaverToggle)="handleBatterySaver($event)">
+            </app-settings>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <app-footer></app-footer>
+</div>
+
+<!-- Battery Saver Overlay -->
+<div class="saver-overlay" *ngIf="isBatterySaver" (click)="closeBatterySaver()">
+  <div class="saver-content">
+    <p>{{ 'battery_active_msg' | translate }}</p>
+    <span class="tap-hint">✨ {{ 'tap_to_wake' | translate }}</span>
+  </div>
+</div>

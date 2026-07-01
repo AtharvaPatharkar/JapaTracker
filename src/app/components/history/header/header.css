@@ -1,0 +1,150 @@
+:host {
+  display: block;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 26px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #eef2ff, #e0f2fe, #fef3c7);
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.header-center {
+  text-align: center;
+  flex: 1;
+}
+
+.brand-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(90deg, #2563eb, #7c3aed, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+  font-size: 11px;
+  color: #475569;
+  margin: 2px 0 0;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.date-range {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  color: #1e293b;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.gold-btn-outline, .profile-btn {
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gold-btn-outline {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  color: #fff;
+}
+
+.profile-btn {
+  background: #fff;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+}
+
+.gold-btn-outline:hover, .profile-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ==============================
+   📱 MOBILE LAYOUT (CSS)
+   ============================== */
+@media (max-width: 768px) {
+  .nav-bar {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+    text-align: center;
+    border-radius: 15px;
+  }
+
+  .header-center {
+    order: -1; 
+  }
+
+  .brand-title {
+    font-size: 20px;
+  }
+
+  .header-right {
+    width: 100%;
+    align-items: center;
+    flex-direction: row; 
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .gold-btn-outline {
+    width: 100%;
+    text-align: center;
+  }
+
+  .date-range {
+    font-size: 10px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .nav-bar {
+    flex-direction: column; 
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .header-center {
+    order: -1;
+    margin-bottom: 5px;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .date-range {
+    font-size: 10px;
+    flex: 1;
+    text-align: center;
+  }
+
+  .gold-btn-outline, .profile-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+    width: auto;
+  }
+}

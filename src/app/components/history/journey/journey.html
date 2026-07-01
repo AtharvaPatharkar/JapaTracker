@@ -1,0 +1,43 @@
+<div class="journey-card vitkari-block">
+  
+  <div class="year-selector">
+    <button class="year-btn" (click)="changeYear(-1)">◀</button>
+    <h3>{{ currentYear }}</h3>
+    <button class="year-btn" (click)="changeYear(1)">▶</button>
+  </div>
+
+  <div class="journey-wrapper">
+
+    <!-- LEFT -->
+    <button class="nav-btn prev" (click)="scroll('left')">❮</button>
+
+    <!-- MONTHS -->
+    <div class="journey-container" #container>
+      <div class="month-block" *ngFor="let month of processedMonths">
+        
+        <h4 class="month-title">{{ month.name }}</h4>
+
+        <div class="month-grid">
+          <div class="week-column" *ngFor="let week of month.weeks">
+
+            <div *ngFor="let day of week"
+                 class="day-cell"
+                 [class.l0]="day.level === 0"
+                 [class.l1]="day.level === 1"
+                 [class.l2]="day.level === 2"
+                 [class.l3]="day.level === 3"
+                 [class.today]="day.isToday"
+                 [title]="day.date + ' - ' + day.count + ' ' + ('malas_count_label' | translate)">
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <button class="nav-btn next" (click)="scroll('right')">❯</button>
+
+  </div>
+</div>

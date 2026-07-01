@@ -1,0 +1,21 @@
+<div class="almanac-container">
+
+  <div class="card">
+    <h4>{{ 'almanac_title' | translate }}</h4>
+
+    <p><strong>{{ 'date_label' | translate }}:</strong> {{ formattedDate }}</p>
+    <p><strong>{{ 'day_label' | translate }}:</strong> {{ dayName }}</p>
+
+    <!-- 🔥 Animated Time -->
+    <p class="time-row">
+      <strong>{{ 'time_label' | translate }}:</strong> 
+      <span class="time-text" [class.animate]="animate">
+        {{ currentTime }}
+      </span>
+    </p>
+
+    <p class="spiritual">{{ 'spiritual_msg' | translate }}</p>
+
+  </div>
+
+</div>

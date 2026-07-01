@@ -1,0 +1,85 @@
+/* ===== CARD (logs-card style match) ===== */
+.focus-card {
+  background: transparent;
+
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* ===== HEADER ===== */
+.focus-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.focus-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #1f2937;
+}
+
+.grade {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ===== TOP SCORE ===== */
+.score {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* ===== CIRCLE WRAPPER ===== */
+.circle-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 10px auto;
+}
+
+/* ===== SVG ROTATION ===== */
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+/* ===== BG CIRCLE ===== */
+.bg-circle {
+  fill: none;
+  stroke: #e5e7eb; /* light gray */
+  stroke-width: 10;
+}
+
+/* ===== PROGRESS CIRCLE ===== */
+.progress-circle {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.6s ease, stroke 0.3s ease;
+}
+
+/* ===== CENTER SCORE ===== */
+.circle-wrapper .score {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* ===== TIP ===== */
+.focus-tip {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.4;
+  background: #f9fafb;
+  padding: 6px 10px;
+  border-radius: 6px;
+}

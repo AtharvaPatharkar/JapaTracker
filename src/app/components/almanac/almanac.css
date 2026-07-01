@@ -1,0 +1,98 @@
+/* Container */
+.almanac-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Card Styling */
+.card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 280px;
+  background: linear-gradient(145deg, #fffdfa, #f7e6c4);
+  border: 2px solid #caa96b;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header */
+.card h4 {
+  margin: -20px -20px 15px -20px;
+  padding: 12px;
+  background: linear-gradient(135deg, #9a3412, #7c2d12);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #d4a937;
+}
+
+/* Text Rows */
+.card p {
+  margin: 10px 0;
+  color: #4a2c0f;
+  font-size: 15px;
+  border-bottom: 1px dashed rgba(202, 169, 107, 0.4);
+  padding-bottom: 8px;
+}
+
+.card p strong {
+  color: #9a3412;
+  font-weight: 700;
+}
+
+/* 🔥 Time Row & Animation */
+.time-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem !important;
+}
+
+.time-text {
+  display: inline-block;
+  color: #1b5e20; /* Spiritual Green */
+  font-weight: 800;
+  transition: all 0.3s ease;
+}
+
+/* Pulsing effect when time updates */
+.time-text.animate {
+  animation: timePulse 0.5s ease-out;
+}
+
+@keyframes timePulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); color: #d32f2f; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Spiritual Message */
+.spiritual {
+  margin-top: 15px !important;
+  border-bottom: none !important;
+  font-style: italic;
+  font-weight: 600;
+  color: #d4a937 !important;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 8px !important;
+}
+
+/* Background Ornament (Optional feel) */
+.card::after {
+  content: "🕉️";
+  position: absolute;
+  bottom: -10px;
+  right: -5px;
+  font-size: 4rem;
+  opacity: 0.05;
+  pointer-events: none;
+}

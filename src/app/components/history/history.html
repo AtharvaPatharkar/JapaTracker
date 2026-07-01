@@ -1,0 +1,150 @@
+<div class="page-container">
+  <div class="main-container">
+    <div class="history-page">
+
+      <!-- HEADER -->
+      <div class="section header-section">
+        <div class="card-wrapper">
+          <app-history-header (back)="goToDashboard()" (themeToggle)="toggleTheme()"></app-history-header>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="section stats-section">
+        <div class="card-wrapper">
+          <app-history-stats [totalMala]="totalMala" [totalCount]="totalCount" [currentStreak]="currentStreak"
+            [longestStreak]="longestStreak">
+          </app-history-stats>
+        </div>
+      </div>
+
+
+      <!-- PDF & SHARE BUTTONS SECTION -->
+<div class="section actions-section">
+  <div class="card-wrapper action-container">
+    <button class="action-btn pdf-btn animate-hover" [disabled]="isDownloadingPDF" (click)="downloadPDF()">
+      <span class="icon" *ngIf="!isDownloadingPDF">📄</span>
+      <span class="spinner" *ngIf="isDownloadingPDF"></span>
+      {{ (isDownloadingPDF ? 'Generating...' : ('download_pdf' | translate)) }}
+    </button>
+    <button class="action-btn share-btn animate-hover" (click)="shareStats()">
+      <span class="icon">📤</span> {{ 'share_report' | translate }}
+    </button>
+    <button class="action-btn print-btn animate-hover" (click)="printPage()">
+      <span class="icon">🖨️</span> {{ 'print_report' | translate }}
+    </button>
+  </div>
+</div>
+
+
+      <!-- ACHIEVEMENTS -->
+      <div class="section achievements-section">
+        <div class="card-wrapper">
+          <app-achievements-target [achievementList]="achievementList" [targetStreak]="targetStreak"
+            [longestStreak]="longestStreak" [malasToNextTarget]="malasToNextTarget">
+          </app-achievements-target>
+        </div>
+      </div>
+
+      <!-- MAIN GRID -->
+      <div class="main-dashboard-grid">
+
+        <!-- LEFT -->
+        <div class="dashboard-col left-col">
+
+          <div class="section">
+            <div class="card-wrapper">
+              <app-ai-chat [totalMala]="totalMala" [currentStreak]="currentStreak" [focusScore]="focusScore"
+                [totalCount]="totalCount" [daysToReach]="daysToReach" [peakHour]="peakHour"
+                [vibrationalFreq]="vibrationalFreq" [data]="data">
+              </app-ai-chat>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="card-wrapper">
+              <app-recent-logs [data]="data" (onDelete)="handleDelete($event)">
+              </app-recent-logs>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="card-wrapper">
+              <app-time-analysis [clockData]="clockData" [peakHour]="peakHour">
+              </app-time-analysis>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- MIDDLE -->
+        <div class="dashboard-col middle-col">
+
+          <div class="section">
+            <div class="card-wrapper">
+              <app-weekly-insights [data]="data"></app-weekly-insights>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="card-wrapper">
+              <app-progress-circle [totalCount]="totalCount"></app-progress-circle>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="card-wrapper">
+              <app-focus-graph [data]="focusGraphData"></app-focus-graph>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="card-wrapper">
+              <app-focus-meter [focusScore]="focusScore" [focusGrade]="focusGrade" [focusTip]="focusTip">
+              </app-focus-meter>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="dashboard-col right-col">
+
+          <div class="section">
+            <div class="card-wrapper">
+              <app-daily-quests [dailyQuests]="dailyQuests" (claim)="claimDailyBonus()">
+              </app-daily-quests>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="card-wrapper">
+              <app-journey [calendarDays]="calendarDays" [currentYear]="currentYear"
+                (yearChange)="handleYearChange($event)" (scrollAction)="handleMonthChange($event)">
+              </app-journey>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="card-wrapper">
+              <app-energy-meter [vibrationalFreq]="vibrationalFreq"></app-energy-meter>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="card-wrapper">
+              <app-prediction [daysToReach]="daysToReach" [levelName]="getCurrentLevelName()" [nextTarget]="nextTarget">
+              </app-prediction>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div> <!-- history-page ends -->
+  </div> <!-- main-container ends -->
+  <!-- FOOTER -->
+
+
+  <app-footer></app-footer>
+</div>

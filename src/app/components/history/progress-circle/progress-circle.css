@@ -1,0 +1,148 @@
+:host {
+  display: block;
+}
+
+/* ===============================
+   CARD
+=============================== */
+.progress-card {
+  text-align: center;
+  padding: 16px;
+  border-radius: 18px;
+}
+
+/* ===============================
+   HEADER
+=============================== */
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.progress-header h3 {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.range {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* ===============================
+   CIRCLE
+=============================== */
+.circle-wrapper {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  margin: 10px auto;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+/* background */
+.bg-circle {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 8;
+}
+
+/* progress */
+.progress-circle {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+
+  transition: stroke-dashoffset 0.7s ease, stroke 0.4s ease;
+
+  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.4));
+}
+
+/* glow animation */
+.progress-circle:hover {
+  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.7));
+}
+
+/* ===============================
+   CENTER TEXT
+=============================== */
+.center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.percent {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.total {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* ===============================
+   REMAINING
+=============================== */
+.remaining {
+  margin-top: 10px;
+}
+
+.remaining .label {
+  display: block;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.remaining .value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f59e0b;
+}
+
+/* ===============================
+   LINEAR BAR
+=============================== */
+.linear-bar {
+  margin-top: 10px;
+  height: 6px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+/* ===============================
+   MOBILE
+=============================== */
+@media (max-width: 600px) {
+
+  .circle-wrapper {
+    width: 110px;
+    height: 110px;
+  }
+
+  .percent {
+    font-size: 16px;
+  }
+
+  .total {
+    font-size: 10px;
+  }
+
+  .range {
+    font-size: 10px;
+  }
+}

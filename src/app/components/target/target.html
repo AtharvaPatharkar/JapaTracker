@@ -1,0 +1,34 @@
+<div class="target-container" [class.completed]="isCompleted">
+
+  <h4>{{ 'daily_target_title' | translate }}</h4>
+
+  <!-- Input with Multilingual Placeholder -->
+<input type="text" 
+         #t 
+         inputmode="numeric"
+         (input)="onTargetInput($event)"
+         maxlength="7"
+         [placeholder]="'set_mala_ph' | translate">
+
+  <!-- Button -->
+  <button (click)="setTarget(t)">
+    {{ 'set_btn' | translate }}
+  </button>
+
+  <!-- Status -->
+  <div class="status mt-2">
+
+    <p>{{ 'target_label' | translate }}: {{ targetMala }}</p>
+    <p>{{ 'completed_label' | translate }}: {{ mala }}</p>
+
+    <p *ngIf="!isCompleted">
+      {{ 'remaining_label' | translate }}: {{ remaining }}
+    </p>
+
+    <p *ngIf="isCompleted" class="done">
+      {{ 'target_done_msg' | translate }}
+    </p>
+
+  </div>
+
+</div>

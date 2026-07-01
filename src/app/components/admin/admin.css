@@ -1,0 +1,186 @@
+/* --- Global Styles --- */
+:host {
+  display: block;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-color: #f0f2f5;
+  padding: 2rem;
+  color: #1a202c;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #2d3748;
+}
+
+/* --- Controls Section --- */
+.controls {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  border: 1px solid white;
+}
+
+.controls input[type="text"], 
+.controls input[type="date"] {
+  padding: 0.6rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.controls input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* --- Stats Cards --- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stats div {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  border-left: 5px solid #4a90e2;
+}
+
+/* --- Table Styles (Desktop/Laptop) --- */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+th {
+  padding: 1rem;
+  text-align: left;
+  color: #718096;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tr {
+  background: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+}
+
+td {
+  padding: 1.2rem 1rem;
+  font-size: 0.95rem;
+}
+
+td:first-child { border-radius: 12px 0 0 12px; }
+td:last-child { border-radius: 0 12px 12px 0; }
+
+/* --- Badges & Buttons --- */
+.active {
+  background: #c6f6d5;
+  color: #22543d;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.inactive {
+  background: #fed7d7;
+  color: #822727;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border: none;
+  transition: 0.2s;
+}
+
+button[click*="deleteUser"] {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+button[click*="deleteUser"]:hover {
+  background: #dc2626;
+  color: white;
+}
+
+/* --- Pagination --- */
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* --- Responsive Layout (Mobile Fix) --- */
+@media (max-width: 768px) {
+  :host { padding: 1rem; }
+
+  .controls { flex-direction: column; align-items: stretch; }
+
+  /* Transform Table to Cards */
+  table, thead, tbody, th, td, tr {
+    display: block;
+    width: 97%;
+  }
+
+  thead tr { display: none; } /* Hide headers */
+
+  tr {
+    background: white;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: right;
+  }
+
+  td:last-child { border: none; justify-content: center; }
+
+  /* Labels for Mobile */
+  td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #4a5568;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    float: left;
+  }
+}

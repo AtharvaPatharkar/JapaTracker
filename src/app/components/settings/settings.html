@@ -1,0 +1,150 @@
+<div class="settings-container">
+
+  <h4>{{ 'settings_title' | translate }}</h4>
+
+  <!-- 🎨 Appearance & Theme (Combined for space) -->
+  <div class="settings-section" [class.active]="openSection === 'appearance'">
+    <div class="section-title" (click)="toggleSection('appearance')">
+      <span>🎨 {{ 'appearance_section' | translate }}</span>
+      <span class="chevron">{{ openSection === 'appearance' ? '▼' : '▶' }}</span>
+    </div>
+
+    <div class="section-content" *ngIf="openSection === 'appearance'">
+      <!-- Theme Rotation -->
+      <div class="setting-item theme-rotate-container">
+        <label>{{ 'appearance' | translate }}</label>
+        <button class="theme-rotate-btn" (click)="rotateTheme()">
+          ✨ {{ 'change_theme_btn' | translate }}
+        </button>
+      </div>
+
+      <!-- Dark Mode Toggle (As requested to keep) -->
+      <div class="setting-item">
+        <label>
+          <span>{{ 'dark_mode_label' | translate }}</span>
+          <input type="checkbox" (change)="toggleTheme()">
+        </label>
+      </div>
+    </div>
+  </div>
+
+<div class="settings-section" [class.active]="openSection === 'language'">
+    <div class="section-title" (click)="toggleSection('language')">
+      <span>🌐 {{ 'select_lang_msg' | translate }}</span>
+      <span class="chevron">{{ openSection === 'language' ? '▼' : '▶' }}</span>
+    </div>
+
+    <div class="section-content" *ngIf="openSection === 'language'">
+      <div class="setting-item">
+        <select class="lang-select" (change)="changeLang($any($event.target).value)" [value]="currentLang">
+          <option value="sa">संस्कृतम्</option> 
+          <option value="mr">मराठी</option>
+          <option value="hi">हिन्दी</option>
+          <option value="gu">ગુજરાતી</option>
+          <option value="te">తెలుగు</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔊 CLICK SOUND -->
+  <div class="settings-section" [class.active]="openSection === 'clickSound'">
+    <div class="section-title" (click)="toggleSection('clickSound')">
+      <span>🖱️ {{ 'click_sound_section' | translate }}</span>
+      <span class="chevron">{{ openSection === 'clickSound' ? '▼' : '▶' }}</span>
+    </div>
+
+    <div class="section-content" *ngIf="openSection === 'clickSound'">
+      <div class="setting-item">
+        <label>
+          <span>{{ 'enable_label' | translate }}</span>
+          <input type="checkbox" [checked]="clickOn" (change)="toggleClick()">
+        </label>
+      </div>
+      <div class="setting-item">
+        <label>{{ 'volume_label' | translate }} 🔊</label>
+        <input type="range" min="0" max="1" step="0.1" [value]="clickVolume"
+          (input)="changeClickVolume(+$any($event.target).value)">
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔔 MALA SOUND -->
+  <div class="settings-section" [class.active]="openSection === 'malaSound'">
+    <div class="section-title" (click)="toggleSection('malaSound')">
+      <span>📿 {{ 'mala_sound_section' | translate }}</span>
+      <span class="chevron">{{ openSection === 'malaSound' ? '▼' : '▶' }}</span>
+    </div>
+
+    <div class="section-content" *ngIf="openSection === 'malaSound'">
+      <div class="setting-item">
+        <label>
+          <span>{{ 'enable_label' | translate }}</span>
+          <input type="checkbox" [checked]="malaOn" (change)="toggleMala()">
+        </label>
+      </div>
+      <div class="setting-item">
+        <label>{{ 'volume_label' | translate }} 🔔</label>
+        <input type="range" min="0" max="1" step="0.1" [value]="malaVolume"
+          (input)="changeMalaVolume(+$any($event.target).value)">
+      </div>
+    </div>
+  </div>
+
+  <!-- 📳 VIBRATION -->
+  <div class="settings-section" *ngIf="isMobile" [class.active]="openSection === 'vibration'">
+    <div class="section-title" (click)="toggleSection('vibration')">
+      <span>📳 {{ 'vibration_section' | translate }}</span>
+      <span class="chevron">{{ openSection === 'vibration' ? '▼' : '▶' }}</span>
+    </div>
+    <div class="section-content" *ngIf="openSection === 'vibration'">
+      <div class="setting-item">
+        <label>
+          <span>{{ 'enable_label' | translate }}</span>
+          <input type="checkbox" [checked]="vibrateOn" (change)="toggleVibrate()">
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🖼️ BACKGROUND -->
+  <div class="settings-section" [class.active]="openSection === 'background'">
+    <div class="section-title" (click)="toggleSection('background')">
+      <span>🖼️ {{ 'background_section' | translate }}</span>
+      <span class="chevron">{{ openSection === 'background' ? '▼' : '▶' }}</span>
+    </div>
+    <div class="section-content" *ngIf="openSection === 'background'">
+      <div class="setting-item">
+        <button (click)="changeBg()" class="action-button">{{ 'change_bg_btn' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔋 Battery & Performance -->
+  <div class="settings-section" [class.active]="openSection === 'battery'">
+    <div class="section-title" (click)="toggleSection('battery')">
+      <span>🔋 {{ 'battery_section' | translate }}</span>
+      <span class="chevron">{{ openSection === 'battery' ? '▼' : '▶' }}</span>
+    </div>
+    <div class="section-content" *ngIf="openSection === 'battery'">
+      <div class="setting-item">
+        <!-- settings.html मधील बटण -->
+        <label class="switch-label">
+          <span>{{ 'battery_saver_label' | translate }}</span>
+          <input type="checkbox" [checked]="isBatterySaver" (change)="toggleBatterySaver()">
+        </label>
+        <small class="hint-text">{{ 'battery_saver_hint' | translate }}</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Black Overlay for Battery Saver -->
+  <div class="saver-overlay" *ngIf="isBatterySaver" (click)="toggleBatterySaver()">
+    <div class="saver-content">
+      <p style="color: #333;">{{ 'battery_active_msg' | translate }}</p>
+      <span style="color: #222;">{{ 'tap_to_wake' | translate }}</span>
+    </div>
+  </div>
+
+</div>

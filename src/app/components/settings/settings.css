@@ -1,0 +1,243 @@
+/* Container */
+.settings-container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 320px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+
+  /* 🌼 Temple Theme Base */
+  background: linear-gradient(135deg, #fff3e0, #f7e6c4);
+  border: 3px solid #caa96b;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Header */
+.settings-container h4 {
+  margin: -20px -20px 20px -20px;
+  padding: 12px;
+  background: linear-gradient(135deg, #9a3412, #7c2d12);
+  color: white;
+  text-align: center;
+  border-radius: 20px 20px 0 0;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Sections */
+.settings-section {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(202, 169, 107, 0.3);
+}
+
+.section-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #9a3412;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(154, 52, 18, 0.2);
+  padding-bottom: 4px;
+}
+
+/* Setting Items */
+.setting-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.setting-item:last-child {
+  margin-bottom: 0;
+}
+
+.setting-item label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #4a2c0f;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* Checkbox/Switch Styling */
+input[type="checkbox"] {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background: #d1d5db;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+input[type="checkbox"]:checked {
+  background: #1b5e20; /* Spiritual Green */
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+input[type="checkbox"]:checked::before {
+  left: 22px;
+}
+
+/* Range/Volume Slider Styling */
+input[type="range"] {
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #e5cfa0;
+  border-radius: 5px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #9a3412;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Background Button */
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #caa96b, #b58d2a);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 0 #8d6e35;
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #8d6e35;
+}
+
+button:hover {
+  filter: brightness(1.05);
+}
+
+
+/* Battery Saver Mode Effect */
+body.battery-saver-active {
+  transition: filter 0.5s ease;
+  filter: brightness(0.2) contrast(0.8); 
+  background-color: #000 !important;
+}
+
+body.battery-saver-active .main-counter-card {
+  filter: brightness(1.5); 
+}
+
+body.battery-saver-active::after {
+  content: 'Battery Saver On - Tap to adjust settings';
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  color: #444;
+  pointer-events: none;
+}
+
+
+/* Language Dropdown */
+.lang-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #caa96b;
+  background: white;
+  color: #9a3412;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Theme Toggle Group */
+.theme-toggle-group {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-toggle-group button {
+  flex: 1;
+  background: #e5cfa0;
+  color: #9a3412;
+  box-shadow: 0 3px 0 #b58d2a;
+}
+
+.theme-toggle-group button.active {
+  background: linear-gradient(135deg, #9a3412, #7c2d12);
+  color: white;
+  box-shadow: 0 3px 0 #4a1a0a;
+  transform: translateY(1px);
+}
+
+.settings-section button {
+  margin-top: 5px;
+}
+
+/* Theme Rotate Button */
+.theme-rotate-container {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme-rotate-btn {
+  background: linear-gradient(135deg, #caa96b, #b58d2a) !important;
+  color: white !important;
+  border: none;
+  padding: 8px 15px !important;
+  border-radius: 12px !important;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #8d6e35 !important;
+  font-size: 0.85rem !important;
+  width: auto !important; 
+}
+
+.theme-rotate-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #8d6e35 !important;
+}
+
+.lang-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #caa96b;
+  background: white;
+  color: #9a3412;
+  font-weight: 600;
+  outline: none;
+}

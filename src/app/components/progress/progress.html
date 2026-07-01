@@ -1,0 +1,42 @@
+<div class="progress-container">
+
+  <h4>{{ 'progress_title' | translate }}</h4>
+
+  <div class="circle-wrapper">
+
+    <svg width="180" height="180" class="progress-ring">
+      <defs>
+        <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#facc15" />
+          <stop offset="50%" stop-color="#f59e0b" />
+          <stop offset="100%" stop-color="#d97706" />
+        </linearGradient>
+      </defs>
+      <!-- Background Circle -->
+      <circle class="bg" cx="90" cy="90" [attr.r]="radius">
+      </circle>
+
+      <!-- Progress Circle -->
+      <circle class="progress" cx="90" cy="90" [attr.r]="radius" [attr.stroke-dasharray]="circumference"
+        [attr.stroke-dashoffset]="dashOffset">
+      </circle>
+
+
+
+    </svg>
+
+
+
+    <!-- Center Text -->
+    <div class="center-text">
+      {{ percent }}%
+    </div>
+
+  </div>
+
+  <!-- Bottom count -->
+  <div class="progress-info">
+    {{ count }} / {{ target }}
+  </div>
+
+</div>

@@ -1,0 +1,158 @@
+/* Container */
+.alarm-container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 280px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+
+  /* 🌼 Temple Theme Base */
+  background: linear-gradient(135deg, #fff3e0, #f7e6c4);
+  border: 3px solid #caa96b;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header (Vitkari/Brick Red) */
+.alarm-container h4 {
+  margin: -20px -20px 20px -20px;
+  padding: 12px;
+  background: linear-gradient(135deg, #9a3412, #7c2d12);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #d4a937;
+}
+
+/* 🕒 Time Input Styling */
+.alarm-container input[type="time"] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px solid #d4a937;
+  border-radius: 12px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #4a2c0f;
+  background-color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.alarm-container input[type="time"]:focus {
+  outline: none;
+  border-color: #f4c542;
+  box-shadow: 0 0 10px rgba(244, 197, 66, 0.4);
+  transform: scale(1.02);
+}
+
+/* Button Grouping */
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 5px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  color: white;
+  transition: 0.2s;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  box-shadow: 0 4px 0 #144016;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #d32f2f, #b71c1c);
+  box-shadow: 0 4px 0 #7f1010;
+}
+
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 transparent;
+}
+
+/* Status Message */
+.alarm-container p {
+  margin-top: 15px;
+  font-weight: 600;
+  color: #1b5e20;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+/* 🔥 POPUP STYLING (Matching Timer) */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-box {
+  background: white;
+  padding: 30px;
+  border-radius: 24px;
+  text-align: center;
+  border: 4px solid #caa96b;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  max-width: 260px;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.popup-box h3 {
+  color: #9a3412;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.popup-box p {
+  color: #4a2c0f;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.popup-box button {
+  width: 100%;
+  padding: 12px;
+  background: #d4a937;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.popup-box button:hover {
+  background: #b58d2a;
+}

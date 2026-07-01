@@ -1,0 +1,69 @@
+<div class="ai-chat-container">
+  
+  <div class="chat-header">
+    <div class="header-info">
+      <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Japa" class="ai-avatar" alt="AI">
+      <span>{{ 'ai_title' | translate }}</span>
+    </div>
+
+    <div class="voice-toggle-group">
+      <button (click)="toggleVoice()" class="icon-btn">
+        {{ voiceEnabled ? '🔊' : '🔇' }}
+      </button>
+      <button class="ai-toggle-btn" [class.off]="!aiAutoMode" (click)="toggleAiAuto()">
+        {{ aiAutoMode ? '🤖' : '⛔' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="chat-body">
+    <div *ngFor="let msg of messages" 
+         [ngClass]="{'ai-msg': msg.type === 'ai', 'user-msg': msg.type === 'user'}">
+      
+      <ng-container *ngIf="msg.text !== 'ai_typing'; else typingTpl">
+        {{ msg.isTranslated ? (msg.text | translate) : msg.text }}
+      </ng-container>
+    </div>
+  </div>
+
+  <ng-template #typingTpl>
+    <div class="ai-msg typing-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </ng-template>
+
+  <!-- सर्व बटणे आता येथे एकत्र दिसतील -->
+  <div class="user-options scrollable-options">
+    <!-- Group 1: Basics -->
+    <button (click)="askAI(langService.getTranslate('opt_streak'))">{{ 'opt_streak' | translate }}</button>
+    <button (click)="askAI(langService.getTranslate('opt_target'))">{{ 'opt_target' | translate }}</button>
+    <button (click)="askAI(langService.getTranslate('opt_level'))">{{ 'opt_level' | translate }}</button>
+    <button (click)="askAI(langService.getTranslate('opt_avg'))">{{ 'opt_avg' | translate }}</button>
+    
+    <!-- Group 2: Stats & Analysis -->
+    <button (click)="askAI(langService.getTranslate('opt_best_day'))">{{ 'opt_best_day' | translate }}</button>
+    <button (click)="askAI(langService.getTranslate('opt_total_japa'))">{{ 'opt_total_japa' | translate }}</button>
+    <button (click)="askAI(langService.getTranslate('opt_focus_score'))">{{ 'opt_focus_score' | translate }}</button>
+    <button (click)="askAI(langService.getTranslate('opt_prediction'))">{{ 'opt_prediction' | translate }}</button>
+    
+    <!-- Group 3: Knowledge & Tips -->
+    <button (click)="askAI(langService.getTranslate('opt_energy_info'))">{{ 'opt_energy_info' | translate }}</button>
+    <button (click)="askAI(langService.getTranslate('opt_why_108'))">{{ 'opt_why_108' | translate }}</button>
+    <button (click)="askAI(langService.getTranslate('opt_how_to_improve'))">{{ 'opt_how_to_improve' | translate }}</button>
+    <button (click)="askAI(langService.getTranslate('opt_focus'))">{{ 'opt_focus' | translate }}</button>
+    <button (click)="askAI(langService.getTranslate('opt_vibration'))">{{ 'opt_vibration' | translate }}</button>
+    <button (click)="askAI(langService.getTranslate('opt_aura_info'))">{{ 'opt_aura_info' | translate }}</button>
+  </div>
+
+  <div class="chat-input-wrapper">
+    <div class="chat-input-box">
+      <input type="text" 
+             [(ngModel)]="userInput" 
+             (keyup.enter)="sendMessage()" 
+             [placeholder]="'placeholder_text' | translate" />
+      <button class="send-btn" (click)="sendMessage()">➤</button>
+      <button class="mic-btn" (click)="startListening()">🎤</button>
+    </div>
+  </div>
+
+</div>

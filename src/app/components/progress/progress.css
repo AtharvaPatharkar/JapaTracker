@@ -1,0 +1,88 @@
+/* Container */
+.progress-container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 280px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+
+  /* 🌼 Temple Theme Base */
+  background: linear-gradient(135deg, #fff3e0, #f7e6c4);
+  border: 3px solid #caa96b;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  position: relative;
+}
+
+/* Header */
+.progress-container h4 {
+  margin: -20px -20px 15px -20px;
+  padding: 12px;
+  background: linear-gradient(135deg, #9a3412, #7c2d12);
+  color: white;
+  border-radius: 20px 20px 0 0;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+/* Circle Wrapper */
+.circle-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+/* SVG Styling */
+.progress-ring {
+  transform: rotate(-90deg); /* Starts the progress from the top */
+  filter: drop-shadow(0 0 5px rgba(217, 119, 6, 0.2));
+}
+
+.progress-ring circle {
+  fill: transparent;
+  stroke-width: 12;
+  stroke-linecap: round; /* Makes the edges of the progress bar curved */
+}
+
+/* Background Path */
+.progress-ring circle.bg {
+  stroke: rgba(202, 169, 107, 0.2);
+}
+
+/* Moving Progress Path */
+.progress-ring circle.progress {
+  stroke: url(#gradientStroke); /* Matches the SVG defs in your HTML */
+  transition: stroke-dashoffset 0.5s ease-out; /* Smooth movement when count changes */
+}
+
+/* 🎯 Center Percentage Text */
+.center-text {
+  position: absolute;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #9a3412;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+/* Bottom Info Text */
+.progress-info {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #4a2c0f;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  border: 1px solid rgba(212, 169, 55, 0.3);
+}
+
+/* Subtle Glow Effect on Full Progress */
+.progress-container:has(.center-text:contains('100%')) {
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+  border-color: #f59e0b;
+}

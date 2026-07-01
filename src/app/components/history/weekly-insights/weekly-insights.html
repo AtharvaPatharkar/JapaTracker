@@ -1,0 +1,86 @@
+<div class="weekly-card vitkari-block">
+
+  <!-- HEADER -->
+  <div class="weekly-header">
+    <div>
+      <h3>{{ 'weekly_insights_title' | translate }}</h3>
+      <small>{{ dateRange }}</small>
+    </div>
+
+    <button class="toggle-btn" (click)="isLineChart = !isLineChart">
+      {{ (isLineChart ? 'btn_bar' : 'btn_line') | translate }}
+    </button>
+    <span class="growth-badge" [style.color]="getGrowthColor()">
+      {{ growth >= 0 ? '▲' : '▼' }} {{ growth }}%
+    </span>
+  </div>
+
+
+  <!-- MINI STATS -->
+  <div class="mini-stats">
+    <div class="mini-box">
+      <span class="label">{{ 'total_label_short' | translate }}</span>
+      <span class="value">{{ totalWeek }}</span>
+    </div>
+
+    <div class="mini-box">
+      <span class="label">{{ 'avg_label_short' | translate }}</span>
+      <span class="value">{{ avg }}</span>
+    </div>
+
+    <div class="mini-box">
+      <span class="label">{{ 'best_label_short' | translate }}</span>
+      <span class="value">{{ bestDay }} ({{ bestValue }})</span>
+    </div>
+  </div>
+
+  <!-- CHART -->
+  <div class="chart-container">
+    <div class="y-axis">
+      <span>{{ bestValue }}</span>
+      <span>{{ (bestValue/2) | number:'1.0-0' }}</span>
+      <span>0</span>
+    </div>
+
+    <div class="graph-area">
+      <div class="bar-graph" *ngIf="!isLineChart">
+        <div class="bar-wrapper" *ngFor="let val of weeklyData; let i = index">
+          <div class="bar" (click)="selectedIndex = i" [class.active]="labels[i].includes(bestDay)"
+            [style.height]="((val || 0) * barScale) + 'px'" [style.background]="getBarColor(i, val)">
+            <span class="tooltip" *ngIf="selectedIndex === i">{{ labels[i] }} <br> {{ val }} mala</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="line-graph" *ngIf="isLineChart">
+        <svg viewBox="0 0 400 140" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" [attr.stop-color]="getLineColor()" stop-opacity="0.8" />
+              <stop offset="100%" [attr.stop-color]="getLineColor()" stop-opacity="1" />
+            </linearGradient>
+          </defs>
+
+          <path fill="none" [attr.stroke]="'url(#lineGradient)'" stroke-width="4" stroke-linecap="round"
+            stroke-linejoin="round" [attr.d]="getLinePoints()" class="line-path" />
+
+          <g *ngFor="let val of weeklyData; let i = index">
+            <circle [attr.cx]="i * (400 / 6)" [attr.cy]="140 - ((val / (bestValue || 1)) * 140)" r="8"
+              [attr.fill]="getLineColor()" fill-opacity="0.2" />
+
+            <circle [attr.cx]="i * (400 / 6)" [attr.cy]="140 - ((val / (bestValue || 1)) * 140)" r="5" fill="#ffffff"
+              [attr.stroke]="getLineColor()" stroke-width="3" class="data-dot" />
+          </g>
+        </svg>
+      </div>
+
+
+      <div class="date-labels">
+        <div *ngFor="let label of labels" class="day-wrapper">
+          <span class="day-name">{{ label.split(' ')[0] }}</span>
+          <span class="day-date">{{ label.split(' ')[1] }} {{ label.split(' ')[2] }}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>

@@ -1,0 +1,27 @@
+<div class="dashboard-row">
+
+  <div class="achievements-panel vitkari-block">
+
+<h3>{{ 'achievements_title' | translate }}</h3>
+
+    <div class="achievement-grid">
+
+      <div *ngFor="let a of achievementList"
+           class="achievement"
+           [class.locked]="!a.unlocked">
+
+        <div class="icon">
+          {{ a.unlocked ? '🏆' : '🔒' }}
+        </div>
+
+        <div class="text">
+          {{ a.label }}
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

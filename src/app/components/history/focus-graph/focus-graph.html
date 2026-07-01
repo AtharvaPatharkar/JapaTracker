@@ -1,0 +1,69 @@
+<div class="focus-graph-card vitkari-block">
+
+  <!-- HEADER -->
+  <div class="fg-header">
+    <h3>{{ 'focus_trend_title' | translate }}</h3>
+    <span class="trend" [style.color]="getTrendColor()">
+      {{ getTrendIcon() }} {{ getTrendText() }}
+    </span>
+  </div>
+
+  <!-- RANGE SELECTOR -->
+  <div class="range-selector">
+    <button *ngFor="let r of ranges"
+            [class.active]="selectedRange === r.value"
+            (click)="changeRange(r.value)">
+      {{ (r.label.includes('range') ? (r.label | translate) : r.label) }}
+    </button>
+  </div>
+
+  <!-- STATS -->
+  <div class="fg-stats">
+    <div class="stat-box">
+      <span class="label">{{ 'avg_label' | translate }}</span>
+      <span class="value">{{ avg }}</span>
+    </div>
+
+    <div class="stat-box">
+      <span class="label">{{ 'best_label' | translate }}</span>
+      <span class="value">{{ best }}</span>
+    </div>
+
+    <div class="stat-box">
+      <span class="label">{{ 'worst_label' | translate }}</span>
+      <span class="value">{{ worst }}</span>
+    </div>
+
+    <div class="stat-box">
+      <span class="label">{{ 'consistency_label' | translate }}</span>
+      <span class="value">{{ consistency }}%</span>
+    </div>
+  </div>
+
+  <!-- GRAPH AREA -->
+  <div class="graph-area" *ngIf="smoothScores.length > 0; else emptyState">
+    <div class="y-axis-labels">
+      <span>100</span><span>50</span><span>0</span>
+    </div>
+
+    <div class="scroll-container" [class.scroll-enabled]="labels.length > 14">
+      <div class="graph-wrapper">
+        <svg [attr.viewBox]="getViewBox()" preserveAspectRatio="none" class="line-svg">
+          <path fill="none" stroke="#6366f1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" [attr.d]="getLinePoints()" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="x-axis-labels" [class.scroll-enabled]="labels.length > 14">
+      <span *ngFor="let label of labels">{{ label }}</span>
+    </div>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <ng-template #emptyState>
+    <div class="empty-state">
+      {{ 'no_data_msg' | translate }}
+    </div>
+  </ng-template>
+
+</div>

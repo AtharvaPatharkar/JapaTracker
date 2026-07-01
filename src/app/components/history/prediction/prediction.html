@@ -1,0 +1,44 @@
+<div class="prediction-card vitkari-block">
+
+  <div class="prediction-header">
+    <h3>{{ 'prediction_title' | translate }}</h3>
+
+    <span class="level-badge">
+      {{ levelName }}
+    </span>
+
+    <div class="target-label">
+      {{ 'next_target_label' | translate }}: <b>{{ nextTarget }} {{ 'mala_label_short' | translate }}</b>
+    </div>
+  </div>
+
+  <div class="prediction-main">
+    <div class="days" *ngIf="daysToReach === 0">🎯</div>
+    <div class="days" *ngIf="daysToReach > 0">{{ daysToReach }}</div>
+
+    <div class="label" *ngIf="daysToReach === 0">
+      {{ 'target_reached_msg' | translate }}
+    </div>
+    <div class="label" *ngIf="daysToReach > 0">
+      {{ 'days_to_reach_label' | translate }}
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="line"></div>
+    <div class="point current">{{ 'today_label' | translate }}</div>
+    <div class="point future">{{ 'target_label' | translate }}</div>
+  </div>
+
+  <div class="prediction-message">
+    <div class="projected-date">
+      <!-- आता पाइपची गरज नाही, थेट TS मधून तयार मेसेज येईल -->
+      {{ finalProjectedMessage }}
+    </div>
+
+    <span>{{ displayMessage }}</span>
+  </div>
+
+
+
+</div>

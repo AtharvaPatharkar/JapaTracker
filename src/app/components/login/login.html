@@ -1,0 +1,107 @@
+<div class="page-container">
+  <div class="main-container">
+    <div class="login-wrapper">
+
+      <div class="info-section animate-fade-in">
+        <div class="overlay"></div>
+        <div class="content">
+          <h1 class="logo-text">📿 JapaTracker</h1>
+          <p class="tagline">{{ 'welcome_back' | translate }}</p>
+          <div class="motivation-box">
+            <div class="stat-preview">
+              <span class="stat-icon">✨</span>
+              <div class="stat-text">
+                <strong>{{ 'momentum_title' | translate }}</strong>
+                <p>{{ 'momentum_desc' | translate }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="login-page">
+        <div class="login-card animate-slide-in">
+          <div class="saving-banner" *ngIf="isSaving">
+            <div class="banner-content">
+              <span class="icon">💾</span>
+              <p><strong>{{ 'save_progress_title' | translate }}</strong></p>
+              <small>{{ 'save_progress_desc' | translate }}</small>
+              <br>
+              <button (click)="cancelSave()" class="btn-cancel">
+                {{ 'btn_cancel_clear' | translate }}
+              </button>
+            </div>
+          </div>
+
+          <div class="header-group">
+            <h2 class="title">
+              {{ (isSaving ? 'login_secure_title' : 'login_title') | translate }}
+            </h2>
+            <p class="subtitle">
+              {{ (isSaving ? 'login_secure_sub' : 'login_sub') | translate }}
+            </p>
+          </div>
+
+          <!-- INPUTS -->
+          <div class="input-group">
+            <div class="input-wrapper">
+              <input type="email" placeholder="{{ 'placeholder_email' | translate }}" [(ngModel)]="email">
+            </div>
+            <div class="input-wrapper">
+              <input type="password" placeholder="{{ 'placeholder_password' | translate }}" [(ngModel)]="password">
+            </div>
+          </div>
+
+          <button class="btn-login" (click)="login()" [disabled]="loading">
+            <span>{{ (loading ? 'btn_logging_in' : 'btn_login_now') | translate }}</span>
+            <span class="arrow" *ngIf="!loading">→</span>
+          </button>
+
+          <button class="btn-guest" (click)="japaWithoutLogin()" *ngIf="!isSaving">
+            {{ 'btn_japa_guest' | translate }}
+          </button>
+
+          <div class="error-msg" *ngIf="error">{{error}}</div>
+
+          <div class="footer-actions">
+            <div class="register-prompt">
+              <span>{{ 'no_account' | translate }}</span>
+              <button routerLink="/register" class="btn-switch">
+                {{ (isSaving ? 'btn_register_save' : 'btn_create_account') | translate }}
+              </button>
+            </div>
+          </div>
+
+          <!-- 📱 Install App Tip -->
+
+          <div class="install-tip mobile-only">
+
+            <div class="tip-icon">📲</div>
+
+            <div class="tip-content">
+
+              <strong>
+                {{ 'install_app_title' | translate }}
+              </strong>
+
+              <p>
+                {{ 'install_app_desc' | translate }}
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="admin-section" *ngIf="!isSaving">
+            <button class="btn-admin" (click)="goAdmin()">
+              {{ 'btn_admin_access' | translate }}
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

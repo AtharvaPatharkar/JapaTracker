@@ -1,0 +1,46 @@
+<div class="focus-card vitkari-block">
+
+  <!-- HEADER -->
+<div class="focus-header">
+ <h3>{{ 'focus_meter_title' | translate }}</h3>
+  <span class="grade" [style.color]="getColor()">{{ focusGrade }}</span>
+</div>
+
+<div class="score" [style.color]="getColor()">
+  {{ progress }}%
+</div>
+
+  <!-- CIRCLE -->
+  <div class="circle-wrapper">
+
+    <svg viewBox="0 0 120 120" class="progress-ring">
+
+      <!-- BG -->
+      <circle
+        cx="60" cy="60" r="52"
+        class="bg-circle" />
+
+      <!-- PROGRESS -->
+      <circle
+        cx="60" cy="60" r="52"
+        class="progress-circle"
+        [style.stroke]="getColor()"
+        [attr.stroke-dasharray]="326"
+        [attr.stroke-dashoffset]="326 - (326 * progress / 100)">
+      </circle>
+
+    </svg>
+
+    <!-- SCORE -->
+    <div class="score">
+      {{ progress }}%
+    </div>
+
+  </div>
+
+  <!-- TIP -->
+  <div class="focus-tip">
+{{ focusTip || ('default_focus_tip' | translate) }}
+  </div>
+
+</div>

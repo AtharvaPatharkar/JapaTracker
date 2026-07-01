@@ -1,0 +1,193 @@
+/* ===== GLOBAL SAFETY ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden; /* 🔥 backup */
+}
+
+
+/* ===== MAIN CARD ===== */
+.journey-card {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;  
+}
+
+
+/* ===== YEAR HEADER ===== */
+.year-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.year-btn {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.year-btn:hover {
+  background: #e0e0e0;
+}
+
+
+/* ===== WRAPPER ===== */
+.journey-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;   /* 🔥 IMPORTANT */
+}
+
+
+/* ===== SCROLL CONTAINER ===== */
+.journey-container {
+  display: flex;
+  gap: 1px;
+  overflow-x: auto;
+  padding: 1px;
+  scroll-behavior: smooth;
+
+  max-width: 100%;
+}
+
+/* hide scrollbar */
+.journey-container::-webkit-scrollbar {
+  display: none;
+}
+.journey-container {
+  scrollbar-width: none;
+}
+
+
+/* ===== MONTH CARD ===== */
+.month-block {
+  min-width: 150px;   /* 🔥 responsive */
+  max-width: 150px;
+  flex-shrink: 0;
+
+  background: transparent;
+  border-radius: 12px;
+  padding: 10px;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+
+/* ===== MONTH TITLE ===== */
+.month-title {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+
+
+
+/* ===== GRID ===== */
+.month-grid {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+
+.week-column {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+
+/* ===== DAY CELL ===== */
+.day-cell {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #eee;
+  transition: 0.2s;
+}
+
+/* heatmap colors */
+.l0 { background: #eee; }
+.l1 { background: #c6e48b; }
+.l2 { background: #7bc96f; }
+.l3 { background: #239a3b; }
+
+
+/* ===== NAV BUTTONS ===== */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #fff;
+
+  cursor: pointer;
+  z-index: 5;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.nav-btn:hover {
+  background: #f5f5f5;
+}
+
+.nav-btn.prev {
+  left: 5px;
+}
+
+.nav-btn.next {
+  right: 5px;
+}
+
+
+/* ===== MOBILE ===== */
+@media (max-width: 480px) {
+
+  .month-block {
+    min-width: 180px;
+    max-width: 180px;
+  }
+
+  .day-cell {
+    width: 12px;
+    height: 12px;
+  }
+
+  .nav-btn {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.day-cell {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #eee;
+}
+
+/* heatmap */
+.l0 { background: #eee; }
+.l1 { background: #c6e48b; }
+.l2 { background: #7bc96f; }
+.l3 { background: #239a3b; }
+
+/* 🔥 TODAY */
+.day-cell.today {
+  border: 2px solid #ff9800;
+  box-shadow: 0 0 5px rgba(255,152,0,0.6);
+  transform: scale(1.15);
+}

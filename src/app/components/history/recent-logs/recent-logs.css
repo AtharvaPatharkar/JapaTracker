@@ -1,0 +1,126 @@
+/* Card Container */
+.logs-card {
+  background: transparent;
+
+  padding: 1rem;
+
+  margin-bottom: 1.5rem;
+}
+
+/* Header & Toggle */
+.logs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.logs-header h3 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.view-toggle {
+  background: #bccff7;
+  border: 1px solid black;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.view-toggle:hover {
+  background: #98afde;
+}
+
+/* Summary Box */
+.report-summary {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+  flex-wrap: wrap;
+}
+
+.range-box {
+  background: #ffffff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+}
+
+/* Filters */
+.filter-section {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-section input, 
+.filter-section select {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  flex: 1;
+}
+
+/* Table Styling */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.logs-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.logs-table th, 
+.logs-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.logs-table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+}
+
+.logs-table small {
+  color: #9ca3af;
+}
+
+/* Grand Total Row */
+.grand-total {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.grand-total td {
+  border-top: 2px solid #dcfce7;
+}
+
+.table-wrapper {
+  max-height: 400px; 
+  overflow-y: auto;  
+  overflow-x: auto;
+  border: 1px solid #f3f4f6;
+  border-radius: 8px;
+}
+
+.delete-btn {
+  background: #fee2e2;
+  color: #ef4444;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.delete-btn:hover {
+  background: #fecaca;
+}

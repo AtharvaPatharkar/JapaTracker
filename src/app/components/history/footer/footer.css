@@ -1,0 +1,74 @@
+:host {
+  display: block;
+
+}
+
+/* ===============================
+   CARD
+=============================== */
+.footer-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 16px;
+  border-radius: 14px;
+
+  font-size: 12px;
+  background-color: aquamarine;
+}
+
+/* ===============================
+   LEFT
+=============================== */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-name {
+  font-weight: 700;
+}
+
+.copy {
+  font-size: 10px;
+  color: #64748b;
+}
+
+/* ===============================
+   RIGHT
+=============================== */
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.version {
+  font-weight: 600;
+}
+
+.divider {
+  color: #cbd5f5;
+}
+
+.tag {
+  color: #475569;
+}
+
+/* ===============================
+   MOBILE
+=============================== */
+@media (max-width: 600px) {
+
+  .footer-card {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .footer-right {
+    justify-content: center;
+  }
+
+}

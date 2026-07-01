@@ -1,0 +1,355 @@
+/* ===== CARD ===== */
+.weekly-card {
+  background: transparent;
+
+  padding: 1rem;
+
+  margin-bottom: 1.5rem;
+}
+
+/* ===== HEADER ===== */
+.weekly-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.weekly-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #1f2937;
+}
+
+.weekly-header small {
+  color: #6b7280;
+  font-size: 11px;
+}
+
+/* growth */
+.growth-badge {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ===== MINI STATS ===== */
+.mini-stats {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.mini-box {
+  flex: 1;
+  background: #cee0f3;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 70px;
+}
+
+.label {
+  display: block;
+  font-size: 11px;
+  color: #000000;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* ===== CHART ===== */
+/* ===== CHART FIX ===== */
+.chart-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 180px;
+}
+
+/* ===== Y AXIS (FIX ALIGNMENT) ===== */
+.y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  font-size: 10px;
+  color: #9ca3af;
+  border-right: 1px solid #e5e7eb;
+  padding-right: 8px;
+  margin-bottom: 16px; /* FIX: align with labels */
+}
+
+/* ===== BAR GRAPH ===== */
+.bar-graph {
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+  height: 100%;
+  gap: 10px;
+}
+
+/* ===== BAR WRAPPER ===== */
+.bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+/* ===== BAR ===== */
+.bar {
+  width: 16px;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* hover */
+.bar:hover {
+  transform: scaleY(1.05);
+  opacity: 0.9;
+}
+
+/* best day */
+.bar.active {
+  outline: 2px solid #6366f1;
+}
+
+/* clicked bar */
+.bar.selected {
+  transform: scale(1.1);
+  z-index: 2;
+}
+
+/* ===== TOOLTIP ===== */
+.tooltip {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1f2937;
+  color: #fff;
+  font-size: 11px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* ===== DAY LABEL ===== */
+.day-label {
+  font-size: 10px;
+  margin-top: 6px;
+  color: #6b7280;
+  text-align: center;
+}
+
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+  text-align: center;
+  font-size: 13px;
+  color: #9ca3af;
+  padding: 10px;
+}
+
+
+
+.weekly-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.weekly-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.chart-container {
+  display: flex;
+  height: 180px; 
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
+.y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 140px;
+  font-size: 10px;
+  color: #94a3b8;
+  border-right: 1px solid #e2e8f0;
+  padding-right: 8px;
+  margin-right: 10px;
+}
+
+.bar-graph {
+  display: flex;
+  flex: 1;
+  height: 140px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.bar {
+  width: 14px;
+  border-radius: 4px;
+  transition: height 0.3s ease, background 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.bar.selected {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+.day-label {
+  font-size: 8px;
+  margin-top: 8px;
+  color: #64748b;
+  text-align: center;
+  width: 100%;
+}
+
+.tooltip {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 9px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.toggle-chart-btn {
+  background: #f1f5f9;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.line-chart-container {
+  margin-top: 15px;
+  height: 80px;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+
+
+.toggle-btn {
+  background: #f1f5f9;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.toggle-btn:hover {
+  background: #e2e8f0;
+}
+
+.line-graph {
+  flex: 1;
+  height: 140px;
+  padding: 10px;
+}
+
+.line-graph svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.chart-container {
+  display: flex;
+  height: 180px;
+  margin-top: 20px;
+}
+
+.graph-area {
+  display: flex;
+  flex-direction: column; 
+  flex: 1;
+  height: 100%;
+}
+
+.bar-graph, .line-graph {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.date-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.day-label {
+  font-size: 8px;
+  color: #64748b;
+  text-align: center;
+  flex: 1;
+}
+
+
+.date-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.day-wrapper {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  flex: 1;
+}
+
+.day-name {
+  font-size: 9px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.day-date {
+  font-size: 8px;
+  color: #64748b;
+  margin-top: 2px;
+}

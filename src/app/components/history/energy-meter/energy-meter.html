@@ -1,0 +1,38 @@
+<div class="energy-card vitkari-block">
+
+  <div class="energy-header">
+    <h3>{{ 'energy_title' | translate }}</h3>
+
+    <span class="state-badge" [style.background]="displayColor">
+      {{ displayState | translate }}
+    </span>
+  </div>
+
+  <strong [style.color]="displayColor">
+    {{ displayState | translate }}
+  </strong>
+
+  <!-- AURA -->
+  <div class="aura-wrapper">
+    <div class="aura-glow" [style.background]="displayColor"></div>
+    <div class="aura-core">
+      <span class="freq">{{ displayFreq }}</span>
+      <span class="label">Hz</span>
+    </div>
+  </div>
+
+  <!-- BAR -->
+  <div class="energy-bar">
+    <div class="energy-fill" [style.width.%]="displayFreq" [style.background]="displayColor">
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="energy-info">
+    <span>{{ 'energy_status_label' | translate }}</span>
+    <strong [style.color]="displayColor">
+      {{ displayState | translate }}
+    </strong>
+  </div>
+
+</div>

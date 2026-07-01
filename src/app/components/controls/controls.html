@@ -1,0 +1,20 @@
+<div class="controls-container">
+
+  <h4>{{ 'controls_title' | translate }}</h4>
+
+  <div class="btn-group">
+
+    <button class="btn btn-success" (click)="goToLoginToSave()" *ngIf="isGuest">
+      {{ 'login_save_btn' | translate }}
+    </button>
+
+    <button class="btn btn-success" (click)="saveData()" *ngIf="!isGuest">
+      {{ 'save_btn' | translate }}
+    </button>
+
+    <button class="btn btn-danger" (click)="restart()">
+      {{ 'restart_btn' | translate }}
+    </button>
+
+  </div>
+</div> 

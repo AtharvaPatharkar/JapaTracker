@@ -1,0 +1,72 @@
+<div class="progress-card vitkari-block">
+
+  <!-- HEADER -->
+  <div class="progress-header">
+    <h3>{{ 'milestone_progress_title' | translate }}</h3>
+    <span class="range">
+      {{ formatNumber(currentMilestone) }} → {{ formatNumber(nextMilestone) }}
+    </span>
+  </div>
+
+
+  <!-- CIRCLE -->
+  <div class="circle-wrapper">
+
+    <svg viewBox="0 0 120 120" class="progress-ring">
+
+      <!-- BACKGROUND -->
+      <circle
+        cx="60" cy="60" r="52"
+        class="bg-circle">
+      </circle>
+
+      <!-- PROGRESS -->
+      <circle
+        cx="60" cy="60" r="52"
+        class="progress-circle"
+        [style.stroke]="getColor()"
+        [attr.stroke-dasharray]="circumference"
+        [attr.stroke-dashoffset]="getOffset()">
+      </circle>
+
+    </svg>
+
+    <!-- CENTER VALUE -->
+    <div class="center-text">
+
+      <div class="percent">
+        {{ progress }}%
+      </div>
+
+      <div class="total">
+        {{ totalCount | number }}
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- REMAINING -->
+  <div class="remaining">
+
+    <span class="label">{{ 'remaining_label' | translate }}</span>
+
+    <span class="value">
+      {{ remaining | number }} {{ 'left_label' | translate }}
+    </span>
+
+  </div>
+  
+
+  <!-- PROGRESS BAR -->
+  <div class="linear-bar">
+
+    <div class="fill"
+         [style.width]="progress + '%'"
+         [style.background]="getColor()">
+    </div>
+
+  </div>
+
+</div>

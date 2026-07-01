@@ -1,0 +1,288 @@
+/* ===============================
+   GLOBAL
+=============================== */
+
+.history-page {
+  padding: 12px;
+  width: 100%;
+  max-width: 100%;
+  /* 🔥 add */
+  overflow-x: hidden;
+  /* 🔥 add */
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+
+  background:
+    radial-gradient(circle at top left, #ffeb14, transparent 40%),
+    radial-gradient(circle at top right, #2c7fea, transparent 40%),
+    radial-gradient(circle at bottom, #de9cf2, transparent 40%),
+    #f8fafc;
+
+  color: #1e293b;
+}
+
+.section {
+  margin-bottom: 14px;
+}
+
+/* ===============================
+   GRID
+=============================== */
+
+.main-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+
+  width: 100%;
+  max-width: 100%;
+  /* 🔥 add */
+}
+
+.dashboard-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+/* ===============================
+   CARD WRAPPER (MAIN FIX)
+=============================== */
+
+.card-wrapper {
+  border: 2px solid #000;
+  border-radius: 16px;
+  padding: 10px;
+
+  width: 100%;
+  /* 🔥 add */
+  max-width: 100%;
+  /* 🔥 add */
+  box-sizing: border-box;
+
+  overflow: hidden;
+  /* 🔥 already correct */
+}
+
+/* ===============================
+   TEXT
+=============================== */
+
+.vitkari-block h3 {
+  font-size: 14px;
+
+}
+
+.vitkari-block p,
+.vitkari-block span {
+  font-size: 13px;
+}
+
+/* ===============================
+   LOG SCROLL FIX
+=============================== */
+
+.logs-section {
+  overflow-x: auto;
+}
+
+/* ===============================
+   TOUCH UX
+=============================== */
+
+button {
+  min-height: 40px;
+}
+
+/* ===============================
+   TABLET
+=============================== */
+
+@media (min-width: 700px) {
+  .history-page {
+    padding: 16px;
+  }
+
+  .main-dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===============================
+   DESKTOP
+=============================== */
+
+@media (min-width: 1100px) {
+  .history-page {
+    padding: 24px;
+  }
+
+  .main-dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+
+
+/* ===============================
+    LAYOUT FIXES (Add these)
+=============================== */
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* स्क्रीनची उंची लॉक करा */
+  width: 100vw;
+  overflow: hidden;
+  /* एक्स्ट्रा जागा सुटणे बंद */
+}
+
+.main-container {
+  flex: 1;
+  /* फुटरला खाली ढकलण्यासाठी */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  /* फक्त इथे स्क्रोल होईल */
+  overflow-x: hidden;
+  width: 100%;
+}
+
+
+
+/* ===============================
+    EXISTING HISTORY STYLES
+=============================== */
+
+.history-page {
+  padding: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: #1e293b;
+}
+
+.footer-wrapper {
+  width: 100%;
+  padding: 10px 0;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .footer-wrapper {
+    padding-bottom: 40px;
+  }
+}
+
+.card {
+  background: var(--card-bg) !important;
+  border: 2px solid var(--border-color) !important;
+  color: var(--text-color) !important;
+  backdrop-filter: blur(6px);
+}
+
+.action-container {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  background: var(--card-bg) !important;
+  border: 2px solid var(--card-border) !important;
+}
+
+.action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: white;
+}
+
+.pdf-btn {
+  background: linear-gradient(135deg, #ef4444, #991b1b);
+  /* PDF Red */
+  box-shadow: 0 4px 0 #7f1d1d;
+}
+
+.share-btn {
+  background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+  /* Share Blue */
+  box-shadow: 0 4px 0 #1e3a8a;
+}
+
+.action-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 transparent;
+}
+
+.action-btn:hover {
+  filter: brightness(1.1);
+}
+
+@media (max-width: 480px) {
+  .action-container {
+    flex-direction: column;
+  }
+}
+
+.print-btn {
+  background: linear-gradient(135deg, #4b5563, #1f2937);
+  box-shadow: 0 4px 0 #111827;
+}
+
+@media print {
+
+  .actions-section,
+  .action-container,
+  .pdf-btn,
+  .share-btn,
+  .print-btn,
+  .logout-btn,
+  app-footer,
+  .header-section button {
+    display: none !important;
+  }
+
+  html,
+  body,
+  .page-container,
+  .main-container {
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+  }
+
+  .section,
+  .card-wrapper {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 20px;
+  }
+
+  @page {
+    size: auto;
+    margin: 15mm;
+  }
+
+  .history-page {
+    padding: 0 !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
